@@ -302,14 +302,14 @@ sns.histplot(eq_ls1['mag'], bins=20, color='green', kde=False, ax=ax1)
 ax1.set_xlabel("Magnitude du séisme")
 ax1.set_ylabel("Nombre de glissements détectés (classe 1)", color='green')
 ax1.tick_params(axis='y', labelcolor='green')
-
+ax1.set_title("Distribution des seismes par magnitude \n ayant engendrés un glissement avec courbe de proportionnalité")
 # Axe secondaire : proportion
 ax2 = ax1.twinx()
 sns.histplot(eq_ls1['mag'], bins=20, stat='probability', color='blue', kde=True, alpha=0.3, ax=ax2)
 ax2.set_ylabel("Proportion (%)", color='blue')
 ax2.tick_params(axis='y', labelcolor='blue')
 
-ax.set_title("Distribution des seismes par magnitude \n ayant engendrés un glissement avec courbe de proportionnalité")
+
 # Affichage dans Streamlit
 st.pyplot(fig)
 
