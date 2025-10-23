@@ -34,7 +34,7 @@ landslide_df = pd.read_csv(file_path_landslide, sep=";")
 #Pour le fichier sur les séismes
 st.header('Le dataset sur les séismes')
 # Un bouton pour afficher le CSV brute
-if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
+if st.button('Données brutes (.csv) sur les séismes'):
     st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
     st.write(earthquake_df)
 #Affichage des infos sur les csv
@@ -49,7 +49,7 @@ st.write(earthquake_df[nom_col].describe())
 #Pour le fichier sur les glissements de terrain
 st.header('Le dataset sur les glissements de terrain en Italie')
 # Un bouton pour afficher le CSV brute
-if st.button('Cliquez ici pour voir le fichier .csv brute'):
+if st.button('Données brutes (.csv) sur les glissements de terrain'):
     st.write('Fichier .csv des glissements de terrain en Italie issues de la base de données de l Istat')
     st.write(landslide_df)
 ## Une liste de sélection pour choisir 1 colonne du fichier sur les glissements de terrain
