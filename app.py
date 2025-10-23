@@ -59,17 +59,16 @@ missing_values = pd.DataFrame({
 })
 st.dataframe(missing_values)
 #Visualisation des données
-st.write(earthquake_df.mag)
 #Magnitude
 st.write("Visualisation des données :")
-st.write("Magnitude")
+st.write(earthquake_df[nom_col])
 fig, ax = plt.subplots(figsize=(8, 5))
-ax.hist(earthquake_df['mag'],
-        bins=range(int(earthquake_df.mag.min()), int(earthquake_df.mag.max())+1),
+ax.hist(earthquake_df[nom_col],
+        bins=range(int(earthquake_df[nom_col].min()), int(earthquake_df[nom_col].max())+1),
         color= "green",
         edgecolor="black")
-ax.set_title("Répartition du nombre de séisme en fonction de la magnitude")
-ax.set_xlabel("Magnitude")
+ax.set_title("Répartition du nombre de séisme en fonction de ", earthquake_df[nom_col])
+ax.set_xlabel(earthquake_df[nom_col])
 ax.set_ylabel("Nombre de séismes")
 ax.grid(axis="y", alpha=0.7)
 st.pyplot(fig)
