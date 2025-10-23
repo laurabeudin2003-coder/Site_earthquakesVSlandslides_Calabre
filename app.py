@@ -34,7 +34,7 @@ landslide_df = pd.read_csv(file_path_landslide, sep=";")
 ## Une liste de sélection pour choisir la colonne
 nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
-    (earthquake_df))
+    (earthquake_df.columns)
 st.write(nom_col)
 
 #st.write(earthquake_df.nom_col.describe())
