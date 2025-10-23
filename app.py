@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 
 st.header("Les géohazards en Calabre (Sud de l'Italie)")
 st.write("Existe-t-il une relation entre les séismes et les glissements de terrain")
