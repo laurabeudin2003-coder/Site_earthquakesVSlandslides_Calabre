@@ -60,22 +60,14 @@ missing_values = pd.DataFrame({
 st.dataframe(missing_values)
 #Visualisation des données
 #Magnitude
-#st.write("Visualisation des données :")
-#st.write("Magnitude")
-#fig, plot = plt.subplots()
-#plot.hist(earthquake_df.mag, bins=range(int(earthquake_df.mag.min()), int(earthquake_df.mag.max())+1), color= "green")
-#plot.set_title("Répartition du nombre de séisme en fonction de la magnitude")
-#plot.set_xlabel("Magnitude")
-#plot.set_ylabel("Nombre de séismes")
-#plot.grid(axis="y", alpha=0.7)
-#st.pyplot(plot)
-
-col = st.selectbox("Choisissez une variable :", earthquake_df.columns)
-fig, ax = plt.subplots()
-ax.hist(earthquake_df[col], bins=10, color='green', edgecolor='black')
-ax.set_xlabel(col)
-ax.set_ylabel("Fréquence")
-ax.set_title(f"Histogramme de {col}")
+st.write("Visualisation des données :")
+st.write("Magnitude")
+fig, plot = plt.subplots()
+plot.hist(earthquake_df.mag, bins=range(int(earthquake_df.mag.min()), int(earthquake_df.mag.max())+1), color= "green")
+plot.set_title("Répartition du nombre de séisme en fonction de la magnitude")
+plot.set_xlabel("Magnitude")
+plot.set_ylabel("Nombre de séismes")
+plot.grid(axis="y", alpha=0.7)
 st.pyplot(fig)
 
 #Pour le fichier sur les glissements de terrain
