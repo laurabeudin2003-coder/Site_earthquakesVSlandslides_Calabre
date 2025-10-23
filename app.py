@@ -91,6 +91,20 @@ st.write(landslide_df[nom_col].describe())
 #Sélection des colonnes interressantes pour l'étude
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
 st.write('Les informations interressantes pour l étude sont :', ', '.join(landslide_df.columns))
+#Visualisation des données
+if nom_col != "time":
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.hist(landslide_df[nom_col],
+        bins=20,
+        color= "green",
+        edgecolor="black")
+    ax.set_title(f"Répartition du nombre de glissements de terrain en fonction de {nom_col}")
+    ax.set_xlabel(nom_col)
+    ax.set_ylabel("Nombre de glissements de terrain")
+    ax.grid(axis="y", alpha=0.7)
+    st.pyplot(fig)
+else:
+    st.write('Choisir une autre variable pour afficher la répartition des séismes')
 #Les Valeurs manquantes dans les fichiers
 st.write('Les valeurs manquantes sur le fichier des glissements de terrain')
 missing_values_LS = pd.DataFrame({
