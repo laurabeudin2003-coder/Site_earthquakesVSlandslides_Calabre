@@ -32,11 +32,16 @@ earthquake_df = pd.read_csv(file_path_earthquake, sep=";")
 landslide_df = pd.read_csv(file_path_landslide, sep=";")
 #Affichage des infos sur les csv
 ## Une liste de sélection pour choisir la colonne
+nom_fichier = st.selectbox(
+    'Les infos de quel fichier voulez-vous?',
+    earthquake_df, landslide_df)
+st.write(nom_fichier)
+## Une liste de sélection pour choisir la colonne
 nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
-    earthquake_df.columns)
+    nom_fichier.columns)
 st.write(nom_col)
-st.write(earthquake_df[nom_col].describe())
+st.write(nom_fichier[nom_col].describe())
 
 # Un bouton pour afficher les CSV brutes
 if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
