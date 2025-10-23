@@ -51,7 +51,8 @@ st.write('Les informations interressantes pour l étude :', earthquake_df.column
 st.write('Les valeurs manquantes sur le fichier des séismes')
 missing_values = pd.DataFrame({
     "Variables": earthquake_df.columns,
-    "Valeurs manquantes": earthquake_df.isna().sum()
+    "Valeurs manquantes": earthquake_df.isna().sum(),
+    "Pourcentage (en %)": round(earthquake_df.isna().mean()*100, 2)
 })
 st.dataframe(missing_values)
 
