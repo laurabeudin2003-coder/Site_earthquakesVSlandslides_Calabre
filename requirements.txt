@@ -2,3 +2,7 @@ streamlit
 pandas
 matplotlib
 sklearn
+numpy
+bisect
+math
+seaborn
