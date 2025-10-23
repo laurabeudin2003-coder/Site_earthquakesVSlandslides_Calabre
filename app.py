@@ -62,12 +62,14 @@ st.dataframe(missing_values)
 #Magnitude
 st.write("Visualisation des données :")
 st.write("Magnitude")
-plt.figure(figsize=(8,5))
-plt.hist(earthquake_df.mag, bins=range(int(earthquake_df.mag.min()), int(earthquake_df.mag.max())+1), color= "green")
-plt.title("Répartition du nombre de séisme en fonction de la magnitude")
-plt.xlabel("Magnitude")
-plt.ylabel("Nombre de séismes")
-plt.grid(axis="y", alpha=0.7)
+fig, plot = plt.subplots()
+plot.figure(figsize=(8,5))
+plot.hist(earthquake_df.mag, bins=range(int(earthquake_df.mag.min()), int(earthquake_df.mag.max())+1), color= "green")
+plot.title("Répartition du nombre de séisme en fonction de la magnitude")
+plot.xlabel("Magnitude")
+plot.ylabel("Nombre de séismes")
+plot.grid(axis="y", alpha=0.7)
+st.pyplot(plot)
 
 
 #Pour le fichier sur les glissements de terrain
