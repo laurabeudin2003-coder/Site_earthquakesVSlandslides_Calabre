@@ -31,13 +31,15 @@ file_path_landslide = 'ITALICA_v4.csv'
 earthquake_df = pd.read_csv(file_path_earthquake, sep=";")
 landslide_df = pd.read_csv(file_path_landslide, sep=";")
 if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
-    st.write('Fichier .csv des séismes issues de la base de données de l USGS')
+    st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
     st.write(earthquake_df)
     st.write('Fichier .csv des glissements de terrain en Italie issues de la base de données de l Istat')
     st.write(landslide_df)
 
 st.write('Sélection des colonnes interressantes pour l étude')
+st.write('Tableau des séismes')
 earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
 earthquake_df
+st.write('Tableau des glissements de terrain en Italie')
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
 landslide_df
