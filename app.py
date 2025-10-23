@@ -51,13 +51,13 @@ nom_col = st.selectbox(
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
 #Visualisation des données
-if nom_col != earthquake_df.time:
+if nom_col != "time":
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.hist(earthquake_df[nom_col],
-        bins=range(int(earthquake_df[nom_col].min()), int(earthquake_df[nom_col].max())+1),
+        bins=20,
         color= "green",
         edgecolor="black")
-    ax.set_title("Répartition du nombre de séisme en fonction de ", earthquake_df[nom_col])
+    ax.set_title(f"Répartition du nombre de séisme en fonction de {nom_col}")
     ax.set_xlabel(earthquake_df[nom_col])
     ax.set_ylabel("Nombre de séismes")
     ax.grid(axis="y", alpha=0.7)
