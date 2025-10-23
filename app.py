@@ -27,10 +27,14 @@ file_path_earthquake = 'Earthquake_South_Italy_since1960.csv'
 # Landslides file : ITALICA, source : Istat
 file_path_landslide = 'ITALICA_v4.csv'
 
+# Un bouton pour afficher les CSV brutes
 earthquake_df = pd.read_csv(file_path_earthquake, sep=";")
-earthquake_df
 landslide_df = pd.read_csv(file_path_landslide, sep=";")
-landslide_df
+if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
+    st.write('Fichier .csv des séismes issues de la base de données de l USGS')
+    st.write(earthquake_df)
+    st.write('Fichier .csv des glissements de terrain en Italie issues de la base de données de l Istat')
+    st.write(landslide_df)
 
 earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
 earthquake_df
