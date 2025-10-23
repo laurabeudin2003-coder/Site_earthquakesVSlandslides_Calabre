@@ -63,7 +63,7 @@ if nom_col != "time":
     ax.grid(axis="y", alpha=0.7)
     st.pyplot(fig)
 else:
-    st.write('Choisi une autre variable')
+    st.write('Choisir une autre variable pour afficher la répartition des séismes')
 #Les Valeurs manquantes dans le fichier
 st.write('Les valeurs manquantes sur le fichier des séismes')
 missing_values = pd.DataFrame({
