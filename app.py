@@ -32,5 +32,7 @@ earthquake_df
 landslide_df = pd.read_csv(file_path_landslide, sep=";")
 landslide_df
 
-print(earthquake_df.describe())
-print(landslide_df.describe())
+earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
+earthquake_df
+landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
+landslide_df
