@@ -50,18 +50,7 @@ nom_col = st.selectbox(
     earthquake_df.columns)
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
-#Les Valeurs manquantes dans le fichier
-st.write('Les valeurs manquantes sur le fichier des séismes')
-missing_values = pd.DataFrame({
-    "Variables": earthquake_df.columns,
-    "Valeurs manquantes": earthquake_df.isna().sum(),
-    "Pourcentage (en %)": round(earthquake_df.isna().mean()*100, 2)
-})
-st.dataframe(missing_values)
 #Visualisation des données
-#Magnitude
-st.write("Visualisation des données :")
-st.write(earthquake_df[nom_col])
 fig, ax = plt.subplots(figsize=(8, 5))
 ax.hist(earthquake_df[nom_col],
         bins=range(int(earthquake_df[nom_col].min()), int(earthquake_df[nom_col].max())+1),
@@ -72,6 +61,15 @@ ax.set_xlabel(earthquake_df[nom_col])
 ax.set_ylabel("Nombre de séismes")
 ax.grid(axis="y", alpha=0.7)
 st.pyplot(fig)
+#Les Valeurs manquantes dans le fichier
+st.write('Les valeurs manquantes sur le fichier des séismes')
+missing_values = pd.DataFrame({
+    "Variables": earthquake_df.columns,
+    "Valeurs manquantes": earthquake_df.isna().sum(),
+    "Pourcentage (en %)": round(earthquake_df.isna().mean()*100, 2)
+})
+st.dataframe(missing_values)
+
 
 #Pour le fichier sur les glissements de terrain
 st.header('Le dataset sur les glissements de terrain en Italie')
