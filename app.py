@@ -101,7 +101,7 @@ st.write(nom_col)
 st.write(landslide_df[nom_col].describe())
 #Sélection des colonnes interressantes pour l'étude
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
-st.write('Les informations interressantes pour l étude sont :', ', '.join(landslide_df.columns))
+st.write('Les informations interressantes pour cette étude sont :', ', '.join(landslide_df.columns))
 #Visualisation des données
 if nom_col == "lon" or nom_col == "lat" or nom_col == "elevation" or nom_col == "slope" or nom_col == "lon_raingauge" or nom_col == "lat_raingauge" or nom_col == "duration" or nom_col == "cumulated_rainfall":
     fig, ax = plt.subplots(figsize=(8, 5))
