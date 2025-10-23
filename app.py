@@ -17,7 +17,7 @@ st.header("Les géohazards en Calabre (Sud de l'Italie)")
 st.write("Existe-t-il une relation entre les séismes et les glissements de terrain")
 st.write("Mineure numérique - Thomas BENOIT & Laura BEUDIN")
 
-st.texte("    Le sud de l’Italie est une zone tectonique relativement active, cela combiné avec une marge passive très abrupte et des reliefs montagneux les phénomènes de glissements de terrain y sont fréquents. Ainsi la question de causalité entre séisme et déclenchement de glissement de terrain peut se poser.  Entre 1996 et 2021, le gouvernement italien a recensé environ 300 glissements de terrain sur la région de la Calabre et 400 en Sicile (Fig. 1 et 3). Pour les séismes, on en compte près de 100 entre 1960 et 2025 en Calabre (Fig. 2).")
+st.text("    Le sud de l’Italie est une zone tectonique relativement active, cela combiné avec une marge passive très abrupte et des reliefs montagneux les phénomènes de glissements de terrain y sont fréquents. Ainsi la question de causalité entre séisme et déclenchement de glissement de terrain peut se poser.  Entre 1996 et 2021, le gouvernement italien a recensé environ 300 glissements de terrain sur la région de la Calabre et 400 en Sicile (Fig. 1 et 3). Pour les séismes, on en compte près de 100 entre 1960 et 2025 en Calabre (Fig. 2).")
 # 2️⃣ Path to the CSV
 # Earthquakes file : loc (lat: 35S 42N, lon: 12W 21E), date: 1960 -> today (17/10/2025), mag > 2.5, source : USGS
 file_path_earthquake = 'Earthquake_South_Italy_since1960.csv'
