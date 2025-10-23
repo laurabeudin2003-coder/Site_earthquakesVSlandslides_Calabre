@@ -348,16 +348,19 @@ for k in [3, 7, 15, 16, 17, 18]:
   y_pred = model.predict(X_test)
   r2 = r2_score(y_test, y_pred)
   scores[k] = r2
-  st.write(f"k={k} → R² = {r2:.3f}") #On affiche le score r² avec 3 chiffres après la virgule pour eviter d'avoir des valeurs a rallonge
 
+  st.write("Valeur du score R² qui correspond au total de valeur que le modèle arrive à reproduire parfaitement :")
+  st.write(f"k={k} → R² = {r2:.3f}") #On affiche le score r² avec 3 chiffres après la virgule pour eviter d'avoir des valeurs a rallonge
+  st.write("Ici 53% au maximum des valeurs sont parfaitement reproduites par le modèle")
 
 #Prédiction
 y_pred = model.predict(X_test)
 
-#Affichage de la valeur moyenne d'erreur MAE pour savoir si le modèle est précis (objectif: 0.2 < MAE < 0.4)
+st.write("Valeur de la Mean ABsolute Error qui correspond à la marge d'erreur moyenne du modèle)
 st.write("MAE:", mean_absolute_error(y_test, y_pred))
-
+st.write("Ici 1 valeur sur 3 est calculée fausse")
 # Création de la figure
+st.write("Nuage de point des magnitude prédites par le modèle KNN")
 fig, ax = plt.subplots(figsize=(6,6))
 
 # Nuage de points : magnitude réelle vs prédite
@@ -407,10 +410,11 @@ r2 = r2_score(y_test, y_pred)
 mae = mean_absolute_error(y_test, y_pred)
 
 #Calcul et affichage du score du modèle (proche de 1 : modèle précis, proche de zéro, négatif : modèle faux)
+st.write("Résultats d'évaluation du modèle RandomForest (Mean Absolute Error et R²)")
 st.write(f"R² = {r2:.3f}")
 st.write(f"MAE = {mae:.3f}")
 
-# Création de la figure
+st.write("Nuage de point des magnitudes prédites par le modèle")
 fig, ax = plt.subplots(figsize=(6,6))
 
 # Nuage de points : magnitude réelle vs prédite
