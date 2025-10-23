@@ -48,12 +48,10 @@ st.write(earthquake_df[nom_col].describe())
 earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
 st.write('Les informations interressantes pour l étude :', earthquake_df.columns)
 #Les Valeurs manquantes dans le fichier
-st.write('Les valeurs manquantes')
-st.write('Fichier des séismes')
+st.write('Les valeurs manquantes sur le fichier des séismes')
 for col in earthquake_df.columns:
     n_MV_EQ = sum(earthquake_df[col].isna())
     st.write('{}:{}'.format(col,n_MV_EQ))
-st.write('Fichier des glissements de terrain')
 
 
 #Pour le fichier sur les glissements de terrain
@@ -71,16 +69,8 @@ st.write(landslide_df[nom_col].describe())
 #Sélection des colonnes interressantes pour l'étude
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
 st.write('Les informations interressantes pour l étude :', landslide_df.columns)
-
-
-
 #Les Valeurs manquantes dans les fichiers
-st.write('Les valeurs manquantes')
-st.write('Fichier des séismes')
-for col in earthquake_df.columns:
-    n_MV_EQ = sum(earthquake_df[col].isna())
-    st.write('{}:{}'.format(col,n_MV_EQ))
-st.write('Fichier des glissements de terrain')
+st.write('Les valeurs manquantes sur le fichier des glissements de terrain')
 for col in landslide_df.columns:
     n_MV_LS = sum(landslide_df[col].isna())
     st.write('{}:{}'.format(col,n_MV_LS))
