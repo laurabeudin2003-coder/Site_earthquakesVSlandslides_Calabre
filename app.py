@@ -255,11 +255,11 @@ y_proba = clf.predict_proba(X_test)[:,1] #Prediction de la probabilité que la c
 y_pred  = (y_proba > 0.5).astype(int) #On transforme la prédiction en binaire (0 ou 1)
 
 #Affichage des résultats de l'évaluation du modèle
-print("Accuracy :", accuracy_score(y_test, y_pred)) #Affichage des proportions totales de bonne prédictions
-print("ROC AUC  :", roc_auc_score(y_test, y_proba)) #Mesure comment le modèle classe (bien ou pas bien)
-print("PR AUC   :", average_precision_score(y_test, y_proba)) #Affichage de l'aire sous la courbe
-print("\nClassification report:\n", classification_report(y_test, y_pred)) #Rapport des performances du modèle
-print("\nConfusion matrix:\n", confusion_matrix(y_test, y_pred)) #Matrice de confusion
+st.write("Accuracy :", accuracy_score(y_test, y_pred)) #Affichage des proportions totales de bonne prédictions
+st.write("ROC AUC  :", roc_auc_score(y_test, y_proba)) #Mesure comment le modèle classe (bien ou pas bien)
+st.write("PR AUC   :", average_precision_score(y_test, y_proba)) #Affichage de l'aire sous la courbe
+st.write("\nClassification report:\n", classification_report(y_test, y_pred)) #Rapport des performances du modèle
+st.write("\nConfusion matrix:\n", confusion_matrix(y_test, y_pred)) #Matrice de confusion
 
 # Courbe précision–rappel
 prec, rec, thr = precision_recall_curve(y_test, y_proba)
@@ -324,7 +324,7 @@ X_scaled = scaler.fit_transform(X)
 #Séparation du csv en 2 pour avoir une partie training et une partie testing
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.5, random_state=42)
 
-print("Résultats du modèle selon k :\n")
+st.write("Résultats du modèle selon k :\n")
 scores = {}
 
 #Définition des modèles KNN sur plusieurs valeurs de k (pour tester la plus précise)
@@ -334,14 +334,14 @@ for k in [3, 7, 15, 16, 17, 18]:
   y_pred = model.predict(X_test)
   r2 = r2_score(y_test, y_pred)
   scores[k] = r2
-  print(f"k={k} → R² = {r2:.3f}") #On affiche le score r² avec 3 chiffres après la virgule pour eviter d'avoir des valeurs a rallonge
+  st.write(f"k={k} → R² = {r2:.3f}") #On affiche le score r² avec 3 chiffres après la virgule pour eviter d'avoir des valeurs a rallonge
 
 
 #Prédiction
 y_pred = model.predict(X_test)
 
 #Affichage de la valeur moyenne d'erreur MAE pour savoir si le modèle est précis (objectif: 0.2 < MAE < 0.4)
-print("MAE:", mean_absolute_error(y_test, y_pred))
+st.write("MAE:", mean_absolute_error(y_test, y_pred))
 
 #Affichage des résultats sous forme de graphique
 plt.figure(figsize=(6,6))
@@ -389,8 +389,8 @@ r2 = r2_score(y_test, y_pred)
 mae = mean_absolute_error(y_test, y_pred)
 
 #Calcul et affichage du score du modèle (proche de 1 : modèle précis, proche de zéro, négatif : modèle faux)
-print(f"R² = {r2:.3f}")
-print(f"MAE = {mae:.3f}")
+st.write(f"R² = {r2:.3f}")
+st.write(f"MAE = {mae:.3f}")
 
 #Affichage des résultats sous forme de graphique
 plt.figure(figsize=(6,6))
