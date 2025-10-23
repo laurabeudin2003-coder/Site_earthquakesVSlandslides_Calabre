@@ -31,6 +31,8 @@ file_path_landslide = 'ITALICA_v4.csv'
 earthquake_df = pd.read_csv(file_path_earthquake, sep=";")
 landslide_df = pd.read_csv(file_path_landslide, sep=";")
 
+#Pour le fichier sur les séismes
+st.header('Le dataset sur les séismes')
 #Affichage des infos sur les csv
 ## Une liste de sélection pour choisir 1 colonne du fichier sur les séismes
 nom_col = st.selectbox(
@@ -38,17 +40,21 @@ nom_col = st.selectbox(
     earthquake_df.columns)
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
+# Un bouton pour afficher le CSV brute
+if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
+    st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
+    st.write(earthquake_df)
+
+#Pour le fichier sur les glissements de terrain
+st.header('Le dataset sur les glissements de terrain en Italie')
 ## Une liste de sélection pour choisir 1 colonne du fichier sur les glissements de terrain
 nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
     landslide_df.columns)
 st.write(nom_col)
 st.write(landslide_df[nom_col].describe())
-
-# Un bouton pour afficher les CSV brutes
+# Un bouton pour afficher le CSV brute
 if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
-    st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
-    st.write(earthquake_df)
     st.write('Fichier .csv des glissements de terrain en Italie issues de la base de données de l Istat')
     st.write(landslide_df)
 
