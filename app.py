@@ -49,9 +49,11 @@ earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 
 st.write('Les informations interressantes pour l étude :', earthquake_df.columns)
 #Les Valeurs manquantes dans le fichier
 st.write('Les valeurs manquantes sur le fichier des séismes')
-for col in earthquake_df.columns:
-    n_MV_EQ = sum(earthquake_df[col].isna())
-    st.write('{}:{}'.format(col,n_MV_EQ))
+missing_values = pd.DataFrame({
+    "Variables": earthquake_df.columns,
+    "Valeurs manquantes": earthquake_df.isna().sum()
+})
+st.dataframe(missing_values)
 
 
 #Pour le fichier sur les glissements de terrain
