@@ -61,15 +61,11 @@ nom_col = st.selectbox(
     landslide_df.columns)
 st.write(nom_col)
 st.write(landslide_df[nom_col].describe())
-
-
-st.write('Sélection des colonnes interressantes pour l étude')
-st.write('Tableau des séismes')
-earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
-earthquake_df
-st.write('Tableau des glissements de terrain en Italie')
+#Sélection des colonnes interressantes pour l'étude
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
-landslide_df
+st.write('Les informations interressantes pour l étude :', landslide_df.columns)
+
+
 
 #Les Valeurs manquantes dans les fichiers
 st.write('Les valeurs manquantes')
