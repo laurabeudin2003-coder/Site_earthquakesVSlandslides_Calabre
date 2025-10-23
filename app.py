@@ -261,15 +261,19 @@ st.write("PR AUC   :", average_precision_score(y_test, y_proba)) #Affichage de l
 st.write("\nClassification report:\n", classification_report(y_test, y_pred)) #Rapport des performances du modèle
 st.write("\nConfusion matrix:\n", confusion_matrix(y_test, y_pred)) #Matrice de confusion
 
-# Courbe précision–rappel
+# Calcul de la courbe précision–rappel
 prec, rec, thr = precision_recall_curve(y_test, y_proba)
-plt.figure(figsize=(5,4))
-plt.plot(rec, prec, color='orange')
-plt.xlabel('Recall')
-plt.ylabel('Precision')
-plt.title('Courbe précision–rappel')
-plt.grid(True) #Affichage de la grille
-plt.show() #affichage du grapghique
+
+# Création de la figure
+fig, ax = plt.subplots(figsize=(5,4))
+ax.plot(rec, prec, color='orange')
+ax.set_xlabel('Recall')
+ax.set_ylabel('Precision')
+ax.set_title('Courbe précision–rappel')
+ax.grid(True)
+
+# Affichage dans Streamlit
+st.pyplot(fig)
 
 #Nuage de point de la répartition géographiques des seismes ainsi que ceux qui on induit un glissement de terrain
 plt.figure(figsize=(8,6))
