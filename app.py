@@ -1,6 +1,17 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+#Importation de toutes les librairies et modules nécessaire pour le modèle
+import numpy as np
+from sklearn.model_selection import train_test_split #Séparer les données d'entrainement et de test
+from sklearn.ensemble import RandomForestClassifier #Modèle RandomForest version Classifier (conditions binaires: 1 / 0)
+from sklearn.metrics import accuracy_score, roc_auc_score, classification_report, confusion_matrix, average_precision_score,  precision_recall_curve, r2_score, mean_absolute_error #Pour évaluation du modèle
+from math import radians, sin, cos, sqrt, atan2 #Pour les conversion mathématiques
+from bisect import bisect_left #Chercher une valeur dans une liste triée
+import seaborn as sns #Equivalent a Matplotlib sauf que ça dessine le graphique pour toi via ce que tu lui donne
+from sklearn.ensemble import RandomForestRegressor #Import du modèle de machine learning supervisé RandomForest bon pour les valeurs non linéaires
+from sklearn.preprocessing import StandardScaler #Normalisation des données pour maintenr une échelle linéaire
+from sklearn.neighbors import KNeighborsRegressor #Modèle de machine learning supervisé voisin proche
 
 st.header("Les géohazards en Calabre (Sud de l'Italie)")
 st.write("Existe-t-il une relation entre les séismes et les glissements de terrain")
@@ -115,16 +126,6 @@ missing_values_LS = pd.DataFrame({
 st.dataframe(missing_values_LS)
 
 #Machine learning relation séisme et glissement de terrain 
-#Importation de toutes les librairies et modules nécessaire pour le modèle
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split #Séparer les données d'entrainement et de test
-from sklearn.ensemble import RandomForestClassifier #Modèle RandomForest version Classifier (conditions binaires: 1 / 0)
-from sklearn.metrics import accuracy_score, roc_auc_score, classification_report, confusion_matrix, average_precision_score,  precision_recall_curve #Pour évaluation du modèle
-import matplotlib.pyplot as plt #Pour les graphs
-from math import radians, sin, cos, sqrt, atan2 #Pour les conversion mathématiques
-from bisect import bisect_left #Chercher une valeur dans une liste triée
-
 #conversion des dates sous le même format (UTC)
 earthquake_df['time'] = pd.to_datetime(earthquake_df['time'], errors='coerce', utc = True).dt.tz_localize(None)
 landslide_df['utc_date'] = pd.to_datetime(landslide_df['utc_date'], errors='coerce', utc = True).dt.tz_localize(None)
@@ -234,7 +235,6 @@ feature_cols = [
 X = earthquake_df[feature_cols]
 y = earthquake_df['non_induced'].astype(int)  #cible inversée
 
-import seaborn as sns #Equivalent a Matplotlib sauf que ça dessine le graphique pour toi via ce que tu lui donne
 #Entrainement et test
 X_train, X_test, y_train, y_test = train_test_split(
     X, y,
@@ -305,11 +305,6 @@ plt.grid(True, alpha=0.3) #Grille légèrement visible pour faciliter la lecture
 plt.show() #affichage du graphique
 
 #Machine learning magnitude modèle KNN
-#Importation du modèle de machine learning
-from sklearn.model_selection import train_test_split #essentiel pour faire l'entrainement et le test
-from sklearn.neighbors import KNeighborsRegressor #Modèle de machine learning supervisé voisin proche
-from sklearn.preprocessing import StandardScaler #Sert a normaliser les données pour conserver la même échelle
-
 #conversion des dates sous le même format (UTC)
 earthquake_df['time'] = pd.to_datetime(earthquake_df['time'], errors='coerce')
 #Redéfinition de la date en seconde pour que le modèle puisse comprendre la valeur
@@ -328,10 +323,6 @@ X_scaled = scaler.fit_transform(X)
 
 #Séparation du csv en 2 pour avoir une partie training et une partie testing
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.5, random_state=42)
-
-#Import des fonctions R² pour tester l'accuracy du modèle de machine learning et des graphiques
-from sklearn.metrics import r2_score, mean_absolute_error #évaluation du modèle r² = mesure de variance des données (est-ce que le modèle prédit en suivant la tendance des données ou pas) MAE = moyenne absolue des erreurs (montre comment en moyenne le modèle se trompe)
-import matplotlib.pyplot as plt #pour faire des graphiques pour afficher les résultats
 
 print("Résultats du modèle selon k :\n")
 scores = {}
@@ -362,12 +353,6 @@ plt.grid(True)
 plt.show()
 
 #Machine Learning magnitude modèle RF
-#Importation du modèle de machine learning
-from sklearn.model_selection import train_test_split #Entrainement et test
-from sklearn.ensemble import RandomForestRegressor #Import du modèle de machine learning supervisé RandomForest bon pour les valeurs non linéaires
-from sklearn.preprocessing import StandardScaler #Normalisation des données pour maintenr une échelle linéaire
-
-
 #Redéfinition de la date en seconde pour que le modèle puisse comprendre la valeur
 earthquake_df['timestamp'] = earthquake_df['time'].astype('int64') / 10**9 #Entier sur 64 bits car date en seconde
 
@@ -384,10 +369,6 @@ X_scaled = scaler.fit_transform(X)
 
 #Séparation du csv en 2 pour avoir une partie training et une partie testing
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.5, random_state=42)
-
-#Import des fonctions R² pour tester l'accuracy du modèle de machine learning
-from sklearn.metrics import r2_score, mean_absolute_error #évaluation du modèle
-import matplotlib.pyplot as plt #graphiques
 
 # Définition du modèle Random Forest
 model = RandomForestRegressor(
