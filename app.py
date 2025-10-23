@@ -74,6 +74,9 @@ landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslid
 st.write('Les informations interressantes pour l étude :', landslide_df.columns)
 #Les Valeurs manquantes dans les fichiers
 st.write('Les valeurs manquantes sur le fichier des glissements de terrain')
-for col in landslide_df.columns:
-    n_MV_LS = sum(landslide_df[col].isna())
-    st.write('{}:{}'.format(col,n_MV_LS))
+missing_values_LS = pd.DataFrame({
+    "Variables": landslide_df.columns,
+    "Valeurs manquantes": landslide_df.isna().sum(),
+    "Pourcentage (en %)": round(landslide_df.isna().mean()*100, 2)
+})
+st.dataframe(missing_values_LS)
