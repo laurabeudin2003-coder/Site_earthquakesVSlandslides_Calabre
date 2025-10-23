@@ -356,7 +356,7 @@ for k in [3, 7, 15, 16, 17, 18]:
 #Prédiction
 y_pred = model.predict(X_test)
 
-st.write("Valeur de la Mean ABsolute Error qui correspond à la marge d'erreur moyenne du modèle)
+st.write("Valeur de la Mean ABsolute Error qui correspond à la marge d'erreur moyenne du modèle")
 st.write("MAE:", mean_absolute_error(y_test, y_pred))
 st.write("Ici 1 valeur sur 3 est calculée fausse")
 # Création de la figure
