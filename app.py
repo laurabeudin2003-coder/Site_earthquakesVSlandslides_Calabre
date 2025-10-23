@@ -62,8 +62,7 @@ st.dataframe(missing_values)
 #Pour le fichier sur les glissements de terrain
 st.header('Le dataset sur les glissements de terrain en Italie')
 #Ajout image glissements de terrain
-image_landslide = Image.open("Landslides_Calabria2.png")
-st.image(image_landslide, caption = "Cartographie des glissements de terrain dans le Sud de l'Italie")
+st.image("Landslides_Calabria2.png", caption = "Cartographie des glissements de terrain dans le Sud de l'Italie")
 # Un bouton pour afficher le CSV brute
 if st.button('Données brutes (.csv) sur les glissements de terrain'):
     st.write('Fichier .csv des glissements de terrain en Italie issues de la base de données de l Istat')
