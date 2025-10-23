@@ -35,7 +35,9 @@ landslide_df = pd.read_csv(file_path_landslide, sep=";")
 nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
     (earthquake_df))
-st.write(earthquake_df.nom_col.describe())
+st.write(nom_col)
+
+#st.write(earthquake_df.nom_col.describe())
 # Un bouton pour afficher les CSV brutes
 if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
     st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
