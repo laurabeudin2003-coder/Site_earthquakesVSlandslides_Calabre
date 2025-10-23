@@ -36,7 +36,7 @@ nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
     earthquake_df.columns)
 st.write(nom_col)
-st.write(earthquake_df.nom_col.describe())
+st.write(nom_col.describe())
 
 # Un bouton pour afficher les CSV brutes
 if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
