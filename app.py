@@ -26,3 +26,8 @@ if st.button('Cliquez ici !'):
 file_path_earthquake = 'Earthquake_South_Italy_since1960.csv'
 # Landslides file : ITALICA, source : Istat
 file_path_landslide = 'ITALICA_v4.csv'
+
+earthquake_df = pd.read_csv(file_path_earthquake, sep=";")
+earthquake_df
+landslide_df = pd.read_csv(file_path_landslide, sep=";")
+landslide_df
