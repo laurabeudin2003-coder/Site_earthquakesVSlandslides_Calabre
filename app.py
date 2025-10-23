@@ -32,5 +32,5 @@ earthquake_df
 landslide_df = pd.read_csv(file_path_landslide, sep=";")
 landslide_df
 
-print(earthquake_df.info())
-print(landslide_df.info())
+print(earthquake_df.describe())
+print(landslide_df.describe())
