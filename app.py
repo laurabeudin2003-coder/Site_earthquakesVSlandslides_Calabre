@@ -50,13 +50,6 @@ nom_col = st.selectbox(
     earthquake_df.columns)
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
-#Visualisation des données
-plt.figure(figsize=(8,5))
-plt.hist(earthquake_df[nom_col], bins=range(int(earthquake_df[nom_col].min()), int(earthquake_df[nom_col].max())+1), color= "green")
-plt.title("Répartition du nombre de séisme en fonction de ", earthquake_df[nom_col])
-plt.xlabel(earthquake_df[nom_col])
-plt.ylabel("Nombre de séismes")
-plt.grid(axis="y", alpha=0.7)
 #Les Valeurs manquantes dans le fichier
 st.write('Les valeurs manquantes sur le fichier des séismes')
 missing_values = pd.DataFrame({
@@ -65,6 +58,16 @@ missing_values = pd.DataFrame({
     "Pourcentage (en %)": round(earthquake_df.isna().mean()*100, 2)
 })
 st.dataframe(missing_values)
+#Visualisation des données
+#Magnitude
+st.write("Visualisation des données :")
+st.write("Magnitude")
+plt.figure(figsize=(8,5))
+plt.hist(earthquake_df.mag, bins=range(int(earthquake_df.mag.min()), int(earthquake_df.mag.max())+1), color= "green")
+plt.title("Répartition du nombre de séisme en fonction de la magnitude")
+plt.xlabel("Magnitude")
+plt.ylabel("Nombre de séismes")
+plt.grid(axis="y", alpha=0.7)
 
 
 #Pour le fichier sur les glissements de terrain
