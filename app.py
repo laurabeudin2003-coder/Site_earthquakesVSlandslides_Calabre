@@ -34,8 +34,7 @@ landslide_df = pd.read_csv(file_path_landslide, sep=";")
 #Pour le fichier sur les séismes
 st.header('Le dataset sur les séismes')
 #Ajout image séisme
-image_earthquake = Image.open("Earthquakes_Calabria2.png")
-st.image(image_earthquake, caption = "Cartographie de la répartition des séismes au Sud de l'Italie")
+st.image("Earthquakes_Calabria2.png", caption = "Cartographie de la répartition des séismes au Sud de l'Italie")
 # Un bouton pour afficher le CSV brute
 if st.button('Données brutes (.csv) sur les séismes'):
     st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
