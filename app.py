@@ -72,7 +72,7 @@ st.dataframe(missing_values)
 
 col = st.selectbox("Choisissez une variable :", earthquake_df.columns)
 fig, ax = plt.subplots()
-ax.hist(earthquake_df[col], bins=range(int(earthquake_df[col].min()), int(earthquake_df.mag.max())+1), color='green', edgecolor='black')
+ax.hist(earthquake_df[col], bins=10, color='green', edgecolor='black')
 ax.set_xlabel(col)
 ax.set_ylabel("Fréquence")
 ax.set_title(f"Histogramme de {col}")
