@@ -30,13 +30,20 @@ file_path_landslide = 'ITALICA_v4.csv'
 #Lecture des fichiers
 earthquake_df = pd.read_csv(file_path_earthquake, sep=";")
 landslide_df = pd.read_csv(file_path_landslide, sep=";")
+
 #Affichage des infos sur les csv
-## Une liste de sélection pour choisir la colonne
+## Une liste de sélection pour choisir 1 colonne du fichier sur les séismes
 nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
     earthquake_df.columns)
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
+## Une liste de sélection pour choisir 1 colonne du fichier sur les glissements de terrain
+nom_col = st.selectbox(
+    'Les infos de quelles variables voulez-vous?',
+    landslide_df.columns)
+st.write(nom_col)
+st.write(landslide_df[nom_col].describe())
 
 # Un bouton pour afficher les CSV brutes
 if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
