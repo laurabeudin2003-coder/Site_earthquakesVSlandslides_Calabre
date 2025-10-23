@@ -5,14 +5,6 @@ st.header("Les géohazards en Calabre (Sud de l'Italie)")
 st.write("Existe-t-il une relation entre les séismes et les glissements de terrain")
 st.write("Mineure numérique - Thomas BENOIT & Laura BEUDIN")
 
-nombres = [1, 2, 4, 7]
-carre = [1**2, 2**2, 4**2, 7**2]
-
-d = {"nombres" : nombres, "carré" : carre}
-data = pd.DataFrame(d)
-
-st.dataframe(data)
-
 st.header("Widgets Interactifs")
 
 # Un slider
