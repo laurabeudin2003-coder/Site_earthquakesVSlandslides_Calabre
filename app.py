@@ -19,7 +19,7 @@ st.write("Mineure numérique - Thomas BENOIT & Laura BEUDIN")
 
 #Explication pb / Intro
 st.text("Le sud de l’Italie est une zone tectonique relativement active, cela combiné avec une marge passive très abrupte et des reliefs montagneux les phénomènes de glissements de terrain y sont fréquents. Ainsi la question de causalité entre séisme et déclenchement de glissement de terrain peut se poser.  Entre 1996 et 2021, le gouvernement italien a recensé environ 300 glissements de terrain sur la région de la Calabre et 400 en Sicile (Fig. 1 et 3). Pour les séismes, on en compte près de 100 entre 1960 et 2025 en Calabre (Fig. 2).")
-st.image("Earthquakes_Calabria2.png", caption = "Cartographie de la répartition des séismes au Sud de l'Italie")
+st.image("Capture d'écran 2025-10-22 185756.png", caption = "Fig.1 : Carte de recensement des glissements de terrain par région (Italie) (Perruccacci et al., 2023)")
 # 2️⃣ Path to the CSV
 # Earthquakes file : loc (lat: 35S 42N, lon: 12W 21E), date: 1960 -> today (17/10/2025), mag > 2.5, source : USGS
 file_path_earthquake = 'Earthquake_South_Italy_since1960.csv'
@@ -33,7 +33,7 @@ landslide_df = pd.read_csv(file_path_landslide, sep=";")
 #Pour le fichier sur les séismes
 st.header('Le dataset sur les séismes')
 #Ajout image séisme
-st.image("Earthquakes_Calabria2.png", caption = "Cartographie de la répartition des séismes au Sud de l'Italie")
+st.image("Earthquakes_Calabria2.png", caption = "Fig.2 : Cartographie de la répartition des séismes au Sud de l'Italie")
 # Un bouton pour afficher le CSV brute
 if st.button('Données brutes (.csv) sur les séismes'):
     st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
@@ -75,7 +75,7 @@ st.dataframe(missing_values)
 #Pour le fichier sur les glissements de terrain
 st.header('Le dataset sur les glissements de terrain en Italie')
 #Ajout image glissements de terrain
-st.image("Landslides_Calabria2.png", caption = "Cartographie des glissements de terrain dans le Sud de l'Italie")
+st.image("Landslides_Calabria2.png", caption = "Fig.3 : Cartographie des glissements de terrain dans le Sud de l'Italie")
 # Un bouton pour afficher le CSV brute
 if st.button('Données brutes (.csv) sur les glissements de terrain'):
     st.write('Fichier .csv des glissements de terrain en Italie issues de la base de données de l Istat')
