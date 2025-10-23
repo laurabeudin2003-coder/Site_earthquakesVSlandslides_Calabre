@@ -59,7 +59,7 @@ missing_values = pd.DataFrame({
 })
 st.dataframe(missing_values)
 #Visualisation des données
-st.write(earthquake_df['mag'])
+st.write(earthquake_df.mag)
 #Magnitude
 st.write("Visualisation des données :")
 st.write("Magnitude")
