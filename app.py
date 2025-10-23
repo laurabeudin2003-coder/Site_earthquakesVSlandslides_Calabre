@@ -92,7 +92,7 @@ st.write(landslide_df[nom_col].describe())
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
 st.write('Les informations interressantes pour l étude sont :', ', '.join(landslide_df.columns))
 #Visualisation des données
-if nom_col == "lon":
+if nom_col == ["lon", "lat"]:
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.hist(landslide_df[nom_col],
         bins=20,
