@@ -1,7 +1,7 @@
 streamlit
 pandas
 matplotlib
-scikit learn
+scikit-learn
 numpy
 bisect
 math
