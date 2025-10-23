@@ -289,25 +289,25 @@ ax.set_title("Répartition géographique des séismes (rouge = glissement décle
 # Affichage dans Streamlit
 st.pyplot(fig)
 
-#Graphique Distribution de la magnitude et proportionnalité des glissements
-eq_ls1 = earthquake_df[earthquake_df['landslide_triggered'] == 1] #On récupère uniquement la classe 1 de notre ML (le cas ou les seismes déclenchent un glissement)
+# On ne garde qu'une seule figure
+eq_ls1 = earthquake_df[earthquake_df['landslide_triggered'] == 1]
 
-fig, ax1 = plt.subplots(figsize=(8,5)) #création de la figure et des axes (ax1 etant le premier axe vertical (gauche))
+fig, ax1 = plt.subplots(figsize=(8,5))
 
 # Axe principal : nombre de cas
-sns.histplot(eq_ls1['mag'], bins=20, color='green', kde=False, ax=ax1) #bin = nombre de classes de magnitude, Kde = une courbe de densité lissée (si True), ax=ax1 on dessine l'axe a gauche
+sns.histplot(eq_ls1['mag'], bins=20, color='green', kde=False, ax=ax1)
 ax1.set_xlabel("Magnitude du séisme")
 ax1.set_ylabel("Nombre de glissements détectés (classe 1)", color='green')
-ax1.tick_params(axis='y', labelcolor='green') #couleur du texte a gauche
+ax1.tick_params(axis='y', labelcolor='green')
 
 # Axe secondaire : proportion
-ax2 = ax1.twinx() #On crée un deuxieme axe vertical partageant le même axe x (axe a droite)
-sns.histplot(eq_ls1['mag'], bins=20, stat='probability', color='blue', kde=True, alpha=0.3, ax=ax2) #Meme chose alpha correspond à la transparence de la courbe (pour voir l'histogramme en dessous)
+ax2 = ax1.twinx()
+sns.histplot(eq_ls1['mag'], bins=20, stat='probability', color='blue', kde=True, alpha=0.3, ax=ax2)
 ax2.set_ylabel("Proportion (%)", color='blue')
-ax2.tick_params(axis='y', labelcolor='blue') #couleur du texte a droite
+ax2.tick_params(axis='y', labelcolor='blue')
 
-# Création de la figure
-fig, ax = plt.subplots(figsize=(8,6))
+# Affichage dans Streamlit
+st.pyplot(fig)
 
 # Ici tu peux tracer tes données, par exemple un histogramme ou une courbe
 # Exemple fictif : ax.hist(magnitudes, bins=20, color='skyblue', edgecolor='black')
