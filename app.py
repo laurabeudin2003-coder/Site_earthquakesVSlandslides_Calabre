@@ -219,17 +219,17 @@ cut_idx = int(0.7 * len(earthquake_sorted))  # 70% train / 30% test
 train_df = earthquake_sorted.iloc[:cut_idx]
 test_df  = earthquake_sorted.iloc[cut_idx:]
 
-#Définition des variables pour l'entrainement et le test
-X_train = train_df[feature_cols]
-y_train = train_df['non_induced'].astype(int)
-X_test  = test_df[feature_cols]
-y_test  = test_df['non_induced'].astype(int)
-
 # Liste des colonnes à utiliser comme variables d'entrée
 feature_cols = [
     'timestamp','latitude','longitude','depth','mag',
     'depth_mag_ratio','log_depth','sin_lat','cos_lon'
 ]
+
+#Définition des variables pour l'entrainement et le test
+X_train = train_df[feature_cols]
+y_train = train_df['non_induced'].astype(int)
+X_test  = test_df[feature_cols]
+y_test  = test_df['non_induced'].astype(int)
 
 #Données d'entrainement et de test
 X = earthquake_df[feature_cols]
