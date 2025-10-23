@@ -51,16 +51,19 @@ nom_col = st.selectbox(
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
 #Visualisation des données
-fig, ax = plt.subplots(figsize=(8, 5))
-ax.hist(earthquake_df[nom_col],
+if nom_col != earthquake_df['time']:
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.hist(earthquake_df[nom_col],
         bins=range(int(earthquake_df[nom_col].min()), int(earthquake_df[nom_col].max())+1),
         color= "green",
         edgecolor="black")
-ax.set_title("Répartition du nombre de séisme en fonction de ", earthquake_df[nom_col])
-ax.set_xlabel(earthquake_df[nom_col])
-ax.set_ylabel("Nombre de séismes")
-ax.grid(axis="y", alpha=0.7)
-st.pyplot(fig)
+    ax.set_title("Répartition du nombre de séisme en fonction de ", earthquake_df[nom_col])
+    ax.set_xlabel(earthquake_df[nom_col])
+    ax.set_ylabel("Nombre de séismes")
+    ax.grid(axis="y", alpha=0.7)
+    st.pyplot(fig)
+else:
+    st.write('Choisi une autre variable')
 #Les Valeurs manquantes dans le fichier
 st.write('Les valeurs manquantes sur le fichier des séismes')
 missing_values = pd.DataFrame({
