@@ -94,7 +94,7 @@ st.write('Les informations interressantes pour l étude sont :', ', '.join(lands
 #Visualisation des données
 if nom_col != ["time", "id", "information_source", "landslide_type", "municipality", "province", "region", "geographic_accuracy", "land_cover", "day", "month", "year", "local_time", "local_date", "utc_date", "temporal_accuracy"] :
     fig, ax = plt.subplots(figsize=(8, 5))
-    ax.hist(nom_col,
+    ax.hist(landslide_df[nom_col],
         bins=20,
         color= "green",
         edgecolor="black")
