@@ -59,11 +59,12 @@ missing_values = pd.DataFrame({
 })
 st.dataframe(missing_values)
 #Visualisation des données
+st.write(earthquake_df['mag'])
 #Magnitude
 st.write("Visualisation des données :")
 st.write("Magnitude")
 fig, ax = plt.subplots(figsize=(8, 5))
-ax.hist(earthquake_df.mag,
+ax.hist(earthquake_df['mag'],
         bins=range(int(earthquake_df.mag.min()), int(earthquake_df.mag.max())+1),
         color= "green",
         edgecolor="black")
