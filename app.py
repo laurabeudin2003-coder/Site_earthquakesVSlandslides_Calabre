@@ -254,7 +254,7 @@ ix1 = np.where(clf.classes_ == 1)[0][0] #On récupère l'index de la classe 1 (g
 y_proba = clf.predict_proba(X_test)[:,1] #Prediction de la probabilité que la classe 1 ai lieu
 y_pred  = (y_proba > 0.5).astype(int) #On transforme la prédiction en binaire (0 ou 1)
 
-#Affichage des résultats de l'évaluation du modèle
+st.write("Résultats de l'évaluation de la cohérence du modèle :")
 st.write("Accuracy :", accuracy_score(y_test, y_pred)) #Affichage des proportions totales de bonne prédictions
 st.write("ROC AUC  :", roc_auc_score(y_test, y_proba)) #Mesure comment le modèle classe (bien ou pas bien)
 st.write("PR AUC   :", average_precision_score(y_test, y_proba)) #Affichage de l'aire sous la courbe
@@ -264,6 +264,7 @@ st.write("\nConfusion matrix:\n", confusion_matrix(y_test, y_pred)) #Matrice de 
 # Calcul de la courbe précision–rappel
 prec, rec, thr = precision_recall_curve(y_test, y_proba)
 
+st.write("Courbe de précision-rappel de notre modèle RandomForest pour le lien entre séismes et glissements de terrain")
 # Création de la figure
 fig, ax = plt.subplots(figsize=(5,4))
 ax.plot(rec, prec, color='orange')
@@ -275,6 +276,7 @@ ax.grid(True)
 # Affichage dans Streamlit
 st.pyplot(fig)
 
+st.write("Nuage de point des locations de séismes avec ceux qui ont générés des glissements de terrain")
 # Nuage de points des séismes
 fig, ax = plt.subplots(figsize=(8,6))
 scatter = ax.scatter(
@@ -289,6 +291,7 @@ ax.set_title("Répartition géographique des séismes (rouge = glissement décle
 # Affichage dans Streamlit
 st.pyplot(fig)
 
+st.write("Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)")
 # On ne garde qu'une seule figure
 eq_ls1 = earthquake_df[earthquake_df['landslide_triggered'] == 1]
 
@@ -305,15 +308,6 @@ ax2 = ax1.twinx()
 sns.histplot(eq_ls1['mag'], bins=20, stat='probability', color='blue', kde=True, alpha=0.3, ax=ax2)
 ax2.set_ylabel("Proportion (%)", color='blue')
 ax2.tick_params(axis='y', labelcolor='blue')
-
-# Affichage dans Streamlit
-st.pyplot(fig)
-
-# Ici tu peux tracer tes données, par exemple un histogramme ou une courbe
-# Exemple fictif : ax.hist(magnitudes, bins=20, color='skyblue', edgecolor='black')
-
-ax.set_title("Distribution des séismes par magnitude \nayant engendré un glissement avec courbe de proportionnalité")
-ax.grid(True, alpha=0.3)  # Grille légèrement visible
 
 # Affichage dans Streamlit
 st.pyplot(fig)
@@ -356,7 +350,7 @@ st.write("Ici presque 54% au maximum des valeurs sont parfaitement reproduites p
 #Prédiction
 y_pred = model.predict(X_test)
 
-st.write("Valeur de la Mean ABsolute Error qui correspond à la marge d'erreur moyenne du modèle")
+st.write("Valeur de la Mean Absolute Error qui correspond à la marge d'erreur moyenne du modèle")
 st.write("MAE:", mean_absolute_error(y_test, y_pred))
 st.write("Ici 1 valeur sur 3 est calculée fausse")
 # Création de la figure
@@ -414,7 +408,7 @@ st.write("Résultats d'évaluation du modèle RandomForest (Mean Absolute Error 
 st.write(f"R² = {r2:.3f}")
 st.write(f"MAE = {mae:.3f}")
 
-st.write("Nuage de point des magnitudes prédites par le modèle")
+st.write("Nuage de point des magnitudes prédites par le modèle RF")
 fig, ax = plt.subplots(figsize=(6,6))
 
 # Nuage de points : magnitude réelle vs prédite
