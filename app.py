@@ -104,7 +104,7 @@ if nom_col == "lon" or nom_col == "lat" or nom_col == "elevation" or nom_col == 
     ax.grid(axis="y", alpha=0.7)
     st.pyplot(fig)
 else:
-    st.write('Choisir une autre variable pour afficher la répartition des séismes')
+    st.write('Choisir une autre variable pour afficher la répartition des glissements de terrain')
 #Les Valeurs manquantes dans les fichiers
 st.write('Les valeurs manquantes sur le fichier des glissements de terrain')
 missing_values_LS = pd.DataFrame({
