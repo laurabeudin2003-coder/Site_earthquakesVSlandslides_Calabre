@@ -46,7 +46,7 @@ st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
 #Sélection des colonnes interressantes pour l'étude
 earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
-st.write('Les informations interressantes pour l étude :', end(earthquake_df.columns))
+st.write('Les informations interressantes pour l étude :', end() earthquake_df.columns)
 
 
 #Pour le fichier sur les glissements de terrain
