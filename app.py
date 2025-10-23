@@ -348,11 +348,11 @@ for k in [3, 7, 15, 16, 17, 18]:
   y_pred = model.predict(X_test)
   r2 = r2_score(y_test, y_pred)
   scores[k] = r2
-
-  st.write("Valeur du score R² qui correspond au total de valeur que le modèle arrive à reproduire parfaitement :")
   st.write(f"k={k} → R² = {r2:.3f}") #On affiche le score r² avec 3 chiffres après la virgule pour eviter d'avoir des valeurs a rallonge
-  st.write("Ici 53% au maximum des valeurs sont parfaitement reproduites par le modèle")
-
+  
+st.write("Valeur du score R² qui correspond au total de valeur que le modèle arrive à reproduire parfaitement :")
+st.write(f"k={17} → R² = {r2:.3f}")
+st.write("Ici 53% au maximum des valeurs sont parfaitement reproduites par le modèle")
 #Prédiction
 y_pred = model.predict(X_test)
 
