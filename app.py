@@ -33,6 +33,9 @@ landslide_df = pd.read_csv(file_path_landslide, sep=";")
 
 #Pour le fichier sur les séismes
 st.header('Le dataset sur les séismes')
+#Ajout image séisme
+image_earthquake = Image.open("")
+st.image(image_earthquake, caption = "")
 # Un bouton pour afficher le CSV brute
 if st.button('Données brutes (.csv) sur les séismes'):
     st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
@@ -59,6 +62,9 @@ st.dataframe(missing_values)
 
 #Pour le fichier sur les glissements de terrain
 st.header('Le dataset sur les glissements de terrain en Italie')
+#Ajout image glissements de terrain
+image_landslide = Image.open("")
+st.image(image_landslide, caption = "")
 # Un bouton pour afficher le CSV brute
 if st.button('Données brutes (.csv) sur les glissements de terrain'):
     st.write('Fichier .csv des glissements de terrain en Italie issues de la base de données de l Istat')
