@@ -275,17 +275,19 @@ ax.grid(True)
 # Affichage dans Streamlit
 st.pyplot(fig)
 
-#Nuage de point de la répartition géographiques des seismes ainsi que ceux qui on induit un glissement de terrain
-plt.figure(figsize=(8,6))
-plt.scatter( #Scatter plot correspond à un nuage de point
-    earthquake_df['longitude'], earthquake_df['latitude'], #Position du seisme X = Ouest/Est et Y = Nord/Sud
-    c=earthquake_df['landslide_triggered'], #couleur en fonction du label 0 ou 1 pour determiné si rouge ou bleu
-    cmap='coolwarm', alpha=0.6, s=20 #cmap correspond à la palette de couleur (coolwarm = classique chaud froid (bleu rouge)) alpha = transparence s correspond à la taille des points
+# Nuage de points des séismes
+fig, ax = plt.subplots(figsize=(8,6))
+scatter = ax.scatter(
+    earthquake_df['longitude'], earthquake_df['latitude'],  # Position du séisme
+    c=earthquake_df['landslide_triggered'],               # Couleur selon le label 0 ou 1
+    cmap='coolwarm', alpha=0.6, s=20                       # Palette, transparence et taille
 )
-plt.xlabel("Longitude")
-plt.ylabel("Latitude")
-plt.title("Répartition géographique des séismes (rouge = glissement déclenché)")
-plt.show() #affichage du graphique
+ax.set_xlabel("Longitude")
+ax.set_ylabel("Latitude")
+ax.set_title("Répartition géographique des séismes (rouge = glissement déclenché)")
+
+# Affichage dans Streamlit
+st.pyplot(fig)
 
 #Graphique Distribution de la magnitude et proportionnalité des glissements
 eq_ls1 = earthquake_df[earthquake_df['landslide_triggered'] == 1] #On récupère uniquement la classe 1 de notre ML (le cas ou les seismes déclenchent un glissement)
@@ -304,9 +306,17 @@ sns.histplot(eq_ls1['mag'], bins=20, stat='probability', color='blue', kde=True,
 ax2.set_ylabel("Proportion (%)", color='blue')
 ax2.tick_params(axis='y', labelcolor='blue') #couleur du texte a droite
 
-plt.title("Distribution des seismes par magnitude \n ayant engendrés un glissement avec courbe de proportionnalité")
-plt.grid(True, alpha=0.3) #Grille légèrement visible pour faciliter la lecture du graphique
-plt.show() #affichage du graphique
+# Création de la figure
+fig, ax = plt.subplots(figsize=(8,6))
+
+# Ici tu peux tracer tes données, par exemple un histogramme ou une courbe
+# Exemple fictif : ax.hist(magnitudes, bins=20, color='skyblue', edgecolor='black')
+
+ax.set_title("Distribution des séismes par magnitude \nayant engendré un glissement avec courbe de proportionnalité")
+ax.grid(True, alpha=0.3)  # Grille légèrement visible
+
+# Affichage dans Streamlit
+st.pyplot(fig)
 
 #Machine learning magnitude modèle KNN
 #conversion des dates sous le même format (UTC)
@@ -347,14 +357,18 @@ y_pred = model.predict(X_test)
 #Affichage de la valeur moyenne d'erreur MAE pour savoir si le modèle est précis (objectif: 0.2 < MAE < 0.4)
 st.write("MAE:", mean_absolute_error(y_test, y_pred))
 
-#Affichage des résultats sous forme de graphique
-plt.figure(figsize=(6,6))
-plt.scatter(y_test, y_pred, alpha=0.5, edgecolors='k')
-plt.xlabel("Magnitude réelle")
-plt.ylabel("Magnitude prédite")
-plt.title("Comparaison des magnitudes réelles vs prédites")
-plt.grid(True)
-plt.show()
+# Création de la figure
+fig, ax = plt.subplots(figsize=(6,6))
+
+# Nuage de points : magnitude réelle vs prédite
+ax.scatter(y_test, y_pred, alpha=0.5, edgecolors='k')
+ax.set_xlabel("Magnitude réelle")
+ax.set_ylabel("Magnitude prédite")
+ax.set_title("Comparaison des magnitudes réelles vs prédites")
+ax.grid(True)
+
+# Affichage dans Streamlit
+st.pyplot(fig)
 
 #Machine Learning magnitude modèle RF
 #Redéfinition de la date en seconde pour que le modèle puisse comprendre la valeur
@@ -396,11 +410,15 @@ mae = mean_absolute_error(y_test, y_pred)
 st.write(f"R² = {r2:.3f}")
 st.write(f"MAE = {mae:.3f}")
 
-#Affichage des résultats sous forme de graphique
-plt.figure(figsize=(6,6))
-plt.scatter(y_test, y_pred, alpha=0.5, edgecolors='k')
-plt.xlabel("Magnitude réelle")
-plt.ylabel("Magnitude prédite")
-plt.title("Comparaison des magnitudes réelles vs prédites")
-plt.grid(True)
-plt.show()
+# Création de la figure
+fig, ax = plt.subplots(figsize=(6,6))
+
+# Nuage de points : magnitude réelle vs prédite
+ax.scatter(y_test, y_pred, alpha=0.5, edgecolors='k')
+ax.set_xlabel("Magnitude réelle")
+ax.set_ylabel("Magnitude prédite")
+ax.set_title("Comparaison des magnitudes réelles vs prédites")
+ax.grid(True)
+
+# Affichage dans Streamlit
+st.pyplot(fig)
