@@ -39,6 +39,9 @@ st.image("Earthquakes_Calabria2.png", caption = "Cartographie de la répartition
 if st.button('Données brutes (.csv) sur les séismes'):
     st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
     st.write(earthquake_df)
+#Sélection des colonnes interressantes pour l'étude
+earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
+st.write('Les informations interressantes pour l étude sont :', ', '.join(earthquake_df.columns))
 #Affichage des infos sur les csv
 ## Une liste de sélection pour choisir 1 colonne du fichier sur les séismes
 nom_col = st.selectbox(
@@ -46,9 +49,13 @@ nom_col = st.selectbox(
     earthquake_df.columns)
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
-#Sélection des colonnes interressantes pour l'étude
-earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
-st.write('Les informations interressantes pour l étude sont :', ', '.join(earthquake_df.columns))
+#Visualisation des données
+plt.figure(figsize=(8,5))
+plt.hist(earthquake_df[nom_col], bins=range(int(earthquake_df[nom_col].min()), int(earthquake_df[nom_col].max())+1), color= "green")
+plt.title("Répartition du nombre de séisme en fonction de ", earthquake_df[nom_col])
+plt.xlabel(earthquake_df[nom_col])
+plt.ylabel("Nombre de séismes")
+plt.grid(axis="y", alpha=0.7)
 #Les Valeurs manquantes dans le fichier
 st.write('Les valeurs manquantes sur le fichier des séismes')
 missing_values = pd.DataFrame({
