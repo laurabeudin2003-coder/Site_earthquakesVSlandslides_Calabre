@@ -46,7 +46,7 @@ st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
 #Sélection des colonnes interressantes pour l'étude
 earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
-st.write('Les informations interressantes pour l étude :', ','.join(earthquake_df.columns))
+st.write('Les informations interressantes pour l étude sont :', ', '.join(earthquake_df.columns))
 #Les Valeurs manquantes dans le fichier
 st.write('Les valeurs manquantes sur le fichier des séismes')
 missing_values = pd.DataFrame({
@@ -71,7 +71,7 @@ st.write(nom_col)
 st.write(landslide_df[nom_col].describe())
 #Sélection des colonnes interressantes pour l'étude
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
-st.write('Les informations interressantes pour l étude :', landslide_df.columns)
+st.write('Les informations interressantes pour l étude sont :', ', '.join(landslide_df.columns))
 #Les Valeurs manquantes dans les fichiers
 st.write('Les valeurs manquantes sur le fichier des glissements de terrain')
 missing_values_LS = pd.DataFrame({
