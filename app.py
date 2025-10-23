@@ -58,7 +58,7 @@ if nom_col != "time":
         color= "green",
         edgecolor="black")
     ax.set_title(f"Répartition du nombre de séisme en fonction de {nom_col}")
-    ax.set_xlabel(earthquake_df[nom_col])
+    ax.set_xlabel(nom_col)
     ax.set_ylabel("Nombre de séismes")
     ax.grid(axis="y", alpha=0.7)
     st.pyplot(fig)
