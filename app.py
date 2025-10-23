@@ -51,7 +51,7 @@ nom_col = st.selectbox(
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
 #Visualisation des données
-if nom_col != earthquake_df['time']:
+if nom_col != earthquake_df.time:
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.hist(earthquake_df[nom_col],
         bins=range(int(earthquake_df[nom_col].min()), int(earthquake_df[nom_col].max())+1),
