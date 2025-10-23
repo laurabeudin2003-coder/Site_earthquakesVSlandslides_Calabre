@@ -58,22 +58,7 @@ missing_values = pd.DataFrame({
     "Pourcentage (en %)": round(earthquake_df.isna().mean()*100, 2)
 })
 st.dataframe(missing_values)
-#Visualisation des données
-#Magnitude
-st.write("Visualisation des données :")
-st.write("Magnitude")
-fig, ax = plt.subplots(figsize=(8, 5))
-    ax.hist(
-        earthquake_df['mag'],
-        bins=range(int(earthquake_df.mag.min()), int(earthquake_df.mag.max())+1),
-        color= "green",
-        edgecolor="black",
-    )
-    ax.set_title("Répartition du nombre de séisme en fonction de la magnitude")
-    ax.set_xlabel("Magnitude")
-    ax.set_ylabel("Nombre de séismes")
-    ax.grid(axis="y", alpha=0.7)
-    st.pyplot(fig)
+
 
 #Pour le fichier sur les glissements de terrain
 st.header('Le dataset sur les glissements de terrain en Italie')
