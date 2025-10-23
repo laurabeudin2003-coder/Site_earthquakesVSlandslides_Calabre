@@ -36,6 +36,7 @@ if st.button('Cliquez ici pour voir les fichiers .csv brutes'):
     st.write('Fichier .csv des glissements de terrain en Italie issues de la base de données de l Istat')
     st.write(landslide_df)
 
+st.write('Sélection des colonnes interressantes pour l étude')
 earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
 earthquake_df
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
