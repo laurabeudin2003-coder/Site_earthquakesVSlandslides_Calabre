@@ -358,19 +358,19 @@ st.write("Ici 1 valeur sur 3 est calculée fausse")
 # Création de la figure
 st.write("Nuage de point des magnitude prédites par le modèle KNN")
 fig, ax = plt.subplots(figsize=(6,6))
-
 # Nuage de points : magnitude réelle vs prédite
 ax.scatter(y_test, y_pred, alpha=0.5, edgecolors='k')
 ax.set_xlabel("Magnitude réelle")
 ax.set_ylabel("Magnitude prédite")
 ax.set_title("Comparaison des magnitudes réelles vs prédites")
 ax.grid(True)
-
 # Affichage dans Streamlit
 st.pyplot(fig)
 
 #Machine Learning magnitude modèle RF
+st.markdown("##### Modèle Random Forest Regressor")
 #Redéfinition de la date en seconde pour que le modèle puisse comprendre la valeur
+st.write("1) Conversion de la date en seconde pour qu'elle soit comprise par le modèle (int64 : entier sous 64 bits car grand nombre)")
 earthquake_df['timestamp'] = earthquake_df['time'].astype('int64') / 10**9 #Entier sur 64 bits car date en seconde
 
 #Suppression en cas de valeurs manquantes s'il y en a (normalement non)
@@ -380,12 +380,17 @@ earthquake_df = earthquake_df.dropna(subset=['mag', 'latitude', 'longitude', 'de
 X = earthquake_df[['timestamp', 'latitude', 'longitude', 'depth']]
 y = earthquake_df['mag']
 
+st.write("Données d'entrée pour le modèle :", ", ".join(X))
+st.write("Cible du modèle : Magnitude")
 #Normalisation des données pour mise a échelle
+st.write("2) Normalisation des données sur une échelle commune pour faciliter les calculs du modèle (moins nécessaire que pour un modèle KNN)")
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 #Séparation du csv en 2 pour avoir une partie training et une partie testing
+st.write("3) Entrainement et test du modèle avec 50% d'entrainement et 50% de test")
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.5, random_state=42)
+
 
 # Définition du modèle Random Forest
 model = RandomForestRegressor(
@@ -395,6 +400,11 @@ model = RandomForestRegressor(
     n_jobs=-1               # utilise tous les cœurs CPU dispo
 )
 
+data_RF2 = pd.DataFrame({
+    "Variables": ["Nombre d'arbres", "Profondeur max", "Reproductibilité", "Utilisation des coeurs de CPU"],
+    "Valeurs": ["500", "None (Automatique)", "42", "-1 (max)"]
+})
+st.dataframe(data_RF2)
 #Entrainement
 model.fit(X_train, y_train)
 
