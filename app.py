@@ -327,10 +327,11 @@ y = earthquake_df['mag']
 st.write("Données d'entrée pour le modèle :", ", ".join(X))
 st.write("Cible du modèle : Magnitude")
 #Normalisation des données pour maintenir une échelle linéaire
+st.write("4) Normalisation des données sur une échelle commune pour permettre au modèle KNN de les lire")
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
-#Séparation du csv en 2 pour avoir une partie training et une partie testing
+st.write("5) Entrainement et test du modèle avec 50% d'entrainement et 50% de test")
 X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.5, random_state=42)
 
 st.write("Résultats du modèle selon k :\n")
