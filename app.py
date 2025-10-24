@@ -120,7 +120,7 @@ st.markdown("### Machine Learning")
     # Machine learning relation séisme et glissement de terrain 
 st.markdown("#### Relation entre les séismes et les glissements de terrain")
         #Feature engineering
-st.markdown("#### Feature engineering")
+st.markdown("##### Feature engineering")
             # Conversion des dates sous le même format (UTC)
 st.write("1) Conversion des dates sous le format UTC")
 earthquake_df['time'] = pd.to_datetime(earthquake_df['time'], errors='coerce', utc = True).dt.tz_localize(None)
@@ -152,7 +152,7 @@ ft = pd.DataFrame({
 })
 st.dataframe(ft)
          #Définition des fonctions
-st.markdown("#### Définition des fonctions")
+st.markdown("##### Définition des fonctions")
 st.write("1) Calcul de la distance entre deux points sur une sphère en utilisant la formule d'Haversine. L'objectif est de placer les glissements en prenant en compte la courbure de la Terre")
 def haversine_km(lat1, lon1, lat2, lon2): #calcul de la distance entre 2 points sur terre
     R = 6371.0 #rayon moyen de la terre
@@ -193,7 +193,7 @@ def ls_features_for_eq(t0, lat0, lon0, mag):
     return 1, cnt, min_dt_h, min_d_km #Sinon on retourne il y a eu un glissement associé, le nombre associé pendant la fenetre, delai le plus court, distance la plus courte
 
         #Mise en forme des données pour l'entrainement et le test
-st.markdown("#### Mise en forme des données pour l'entrainement et le test")
+st.markdown("##### Mise en forme des données pour l'entrainement et le test")
 st.write("1) Ré-attribution des données pour chaque classe dans une variable landslide_triggered")
 # Applique aux séismes (vectorisation par apply ligne à ligne)
 feats = earthquake_df.apply(
@@ -252,7 +252,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 #Définition du RandomForest
-st.markdown("#### Machine Learning supervisé : Random Forest Classifier")
+st.markdown("##### Machine Learning supervisé : Random Forest Classifier")
 clf = RandomForestClassifier(
     n_estimators=300, random_state=42, class_weight='balanced'
 )
@@ -279,7 +279,7 @@ st.write("\nClassification report:\n", classification_report(y_test, y_pred)) #R
 st.write("\nConfusion matrix:\n", confusion_matrix(y_test, y_pred)) #Matrice de confusion
 
     # Visuels
-st.markdown("#### Visualisation des résultats")
+st.markdown("##### Visualisation des résultats")
 
 # Courbe précision–rappel
 prec, rec, thr = precision_recall_curve(y_test, y_proba)
@@ -306,20 +306,29 @@ ax.set_title("Répartition géographique des séismes (rouge = glissement décle
 st.pyplot(fig)
 
 
-
+st.markdown("#### Prédiction de la magnitude d'un séisme")
 #Machine learning magnitude modèle KNN
+st.markdown("##### ML modèle K Nearest Neighbors Regressor (KNN)")
 #conversion des dates sous le même format (UTC)
+st.write("1) Conversion de la date sous le format UTC")
 earthquake_df['time'] = pd.to_datetime(earthquake_df['time'], errors='coerce')
 #Redéfinition de la date en seconde pour que le modèle puisse comprendre la valeur
+st.write("2) Conversion de la date en seconde pour qu'elle soit comprise par le modèle (int64 : entier sous 64 bits car grand nombre)")
 earthquake_df['timestamp'] = earthquake_df['time'].astype('int64') / 10**9 #int64 = un entier sur 64 bits (grands nombre puisqu'on converti une date en secondes)
 
 #Suppression en cas de valeurs manquantes s'il y en a (normalement non)
 earthquake_df = earthquake_df.dropna(subset=['mag', 'latitude', 'longitude', 'depth', 'timestamp'])
 
+st.write("3) Définition des valeurs d'entrée et de la cible du Machine Learning")
 #Entrée des valeurs d'entrées et de la cible du ML
 X = earthquake_df[['timestamp', 'latitude', 'longitude', 'depth']]
 y = earthquake_df['mag']
 
+data_KNN = pd.DataFrame({
+    "Variables": ["X", "Y"],
+    "Valeurs": [X, y],
+})
+st.dataframe(data_KNN)
 #Normalisation des données pour maintenir une échelle linéaire
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
