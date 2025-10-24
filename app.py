@@ -475,3 +475,9 @@ ax2.set_ylabel("Proportion (%)", color='blue')
 ax2.tick_params(axis='y', labelcolor='blue')
 st.pyplot(fig)
 st.write("**Observation** : Les séismes de faible magnitude semblent avoir un impact légèrement supérieur, probablement en raison de leur plus grande fréquence.")
+
+#Bibliographie
+st.markdown("#### Bibliographie")
+st.text("Istat, 2025. Confini delle unità amministrative a fini statistici. In : Istat [En ligne]. Date de consultation : 23/10/2025. Disponible sur : <https://www.istat.it/notizia/confini-delle-unita-amministrative-a-fini-statistici-al-1-gennaio-2018-2/>.") 
+st.text("Peruccacci, S., Gariano, S.L., Melillo, M., Solimano, M., Guzzetti, F., Brunetti, M.T., 2023. The ITAlian rainfall-induced LandslIdes CAtalogue, an extensive and accurate spatio-temporal catalogue of rainfall-induced landslides in Italy. Earth System Science Data, volume 15, n° 7. p. 2863‑2877. DOI : 10.5194/essd-15-2863-2023")
+st.text("U. S. Geological Survey, 2017. Advanced National Seismic System (ANSS) Comprehensive Catalog. Date de consultation : 23/10/2025. Disponible sur : <http://earthquake.usgs.gov/earthquakes/search/>.")
