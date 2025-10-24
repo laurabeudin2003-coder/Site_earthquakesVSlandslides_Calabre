@@ -142,10 +142,13 @@ landslide_df = landslide_df[['utc_date','lat','lon']].dropna()
             # Conversion de la date en seconde pour une meilleure compréhension pour le modèle
 st.write("6) Conversion de la date en seconde pour qu'elle soit comprise par le programme")
 earthquake_df['timestamp'] = earthquake_df['time'].astype('int64') / 10**9
-
-#Définition de la fenêtre temporelle
+            # Définition de la fenêtre temporelle
+st.write("7) Définition de la fenêtre temporelle et spatiale")
 time_window_days = 4      # 24h=1, 48h=2, 72h=3
 radius_km      = 200       # 25 / 50 / 100 km à tester
+ft = pd.DataFrame(["Fenêtre temporelle utilisée (en j)", "Rayon de calcul autour de l'épicentre (en km)"],
+                  [4, 200])
+st.table(ft)
 
 def haversine_km(lat1, lon1, lat2, lon2): #calcul de la distance entre 2 points sur terre
     R = 6371.0 #rayon moyen de la terre
