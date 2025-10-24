@@ -400,6 +400,7 @@ model = RandomForestRegressor(
     n_jobs=-1               # utilise tous les cœurs CPU dispo
 )
 
+st.write("Définition des entrée pour le Random Forest")
 data_RF2 = pd.DataFrame({
     "Variables": ["Nombre d'arbres", "Profondeur max", "Reproductibilité", "Utilisation des coeurs de CPU"],
     "Valeurs": ["500", "None (Automatique)", "42", "-1 (max)"]
