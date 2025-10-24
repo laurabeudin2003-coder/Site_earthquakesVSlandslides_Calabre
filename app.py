@@ -326,7 +326,7 @@ y = earthquake_df['mag']
 
 data_KNN = pd.DataFrame({
     "Variables": ["X", "Y"],
-    "Valeurs": [['timestamp', 'latitude', 'longitude', 'depth'], 'magnitude'],
+    "Valeurs": [('timestamp', 'latitude', 'longitude', 'depth'), "magnitude"],
 })
 st.dataframe(data_KNN)
 #Normalisation des données pour maintenir une échelle linéaire
