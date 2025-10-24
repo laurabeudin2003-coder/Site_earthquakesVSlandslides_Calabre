@@ -44,7 +44,7 @@ if st.button('Données brutes (.csv) sur les séismes'):
     st.write(earthquake_df)
         #Sélection des colonnes interressantes pour l'étude
 earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
-st.write('Les informations interressantes pour l étude sont :', ', '.join(earthquake_df.columns))
+st.write('**Les informations interressantes pour l étude sont :**', ', '.join(earthquake_df.columns))
         # Une liste de sélection pour choisir 1 colonne du fichier sur les séismes et voir ses infos
 nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
