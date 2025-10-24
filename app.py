@@ -257,6 +257,7 @@ clf = RandomForestClassifier(
     n_estimators=300, random_state=42, class_weight='balanced'
 )
 clf.fit(X_train, y_train)
+st.write("Tableau des paramètres utilisés pour le modèle Random Forest")
 data_RF = pd.DataFrame({
     "Variables": ["Nombre d'arbres", "Reproductibilité", "Equilibrage des classes"],
     "Valeurs": ["300", "42", "balanced"]
@@ -266,6 +267,13 @@ st.dataframe(data_RF)
 ix1 = np.where(clf.classes_ == 1)[0][0] #On récupère l'index de la classe 1 (glissement déclanchés par seisme)
 y_proba = clf.predict_proba(X_test)[:,1] #Prediction de la probabilité que la classe 1 ai lieu
 y_pred  = (y_proba > 0.5).astype(int) #On transforme la prédiction en binaire (0 ou 1)
+
+st.write("Tableau des résultats de l'évaluation de la cohérence du modèle")
+result = pd.DataFrame({
+    "Variables": ["Accuracy", "ROC AUC", "PR AUC"],
+    "Valeurs": [accuracy_score(y_test, y_pred), roc_auc_score(y_test, y_proba), average_precision_score(y_test, y_proba)]
+})
+st.dataframe(result)
 
 st.write("Résultats de l'évaluation de la cohérence du modèle :")
 st.write("Accuracy :", accuracy_score(y_test, y_pred)) #Affichage des proportions totales de bonne prédictions
