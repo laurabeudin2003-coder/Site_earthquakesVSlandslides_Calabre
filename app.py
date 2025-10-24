@@ -450,7 +450,7 @@ ax.grid(True)
 st.pyplot(fig)
 
 st.markdown("##### Conclusion")
-st.image("Capture d'écran 2025-10-22 185756.png", caption = "Fig.8 : Tableau des différences entre les deux modèles")
+st.image("Capture d'écran 2025-10-24 121902.png", caption = "Fig.8 : Tableau des différences entre les deux modèles")
 st.write("**Résultats** :")
 st.write("- Précision ≈ 90 % pour les deux modèles.")
 st.write("- Capacité de prédiction : 53 % (KNN) et 57 % (RF).")
