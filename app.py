@@ -290,7 +290,7 @@ st.markdown("##### Visualisation des résultats")
 
 # Courbe précision–rappel
 prec, rec, thr = precision_recall_curve(y_test, y_proba)
-st.write("Courbe de précision-rappel de notre modèle RandomForest pour le lien entre séismes et glissements de terrain")
+st.write("Fig.4 : Courbe de précision-rappel de notre modèle RandomForest pour le lien entre séismes et glissements de terrain")
 fig, ax = plt.subplots(figsize=(5,4))
 ax.plot(rec, prec, color='orange')
 ax.set_xlabel('Recall')
@@ -300,7 +300,7 @@ ax.grid(True)
 st.pyplot(fig)
 
 # Nuage de points avec localisation des séismes
-st.write("Nuage de points des localisations de séismes avec ceux qui ont générés des glissements de terrain")
+st.write("Fig.5 : Nuage de points des localisations de séismes avec ceux qui ont générés des glissements de terrain")
 fig, ax = plt.subplots(figsize=(8,6))
 scatter = ax.scatter(
     earthquake_df['longitude'], earthquake_df['latitude'],  # Position du séisme
@@ -373,7 +373,7 @@ st.write("Valeur de la Mean Absolute Error qui correspond à la marge d'erreur m
 st.write("MAE:", mean_absolute_error(y_test, y_pred))
 st.write("Ici 1 valeur sur 3 est calculée fausse")
 # Création de la figure
-st.write("Nuage de point des magnitude prédites par le modèle KNN")
+st.write("Fig.6 : Nuage de point des magnitude prédites par le modèle KNN")
 fig, ax = plt.subplots(figsize=(6,6))
 # Nuage de points : magnitude réelle vs prédite
 ax.scatter(y_test, y_pred, alpha=0.5, edgecolors='k')
@@ -438,7 +438,7 @@ st.write("Résultats d'évaluation du modèle RandomForest (Mean Absolute Error 
 st.write(f"R² = {r2:.3f}")
 st.write(f"MAE = {mae:.3f}")
 
-st.write("Nuage de point des magnitudes prédites par le modèle RF")
+st.write("Fig.7 : Nuage de point des magnitudes prédites par le modèle RF")
 fig, ax = plt.subplots(figsize=(6,6))
 
 # Nuage de points : magnitude réelle vs prédite
@@ -450,18 +450,7 @@ ax.grid(True)
 st.pyplot(fig)
 
 st.markdown("##### Conclusion")
-st.write("Tableau des différences entre les deux modèles")
-KNN = ["Très simple, intuitif, pas besoin d’entrainement lourd",
-       "Très sensible à l’échelle des variables",
-       "Fonctionne bien si les données sont bien distribuées et nombreuses",
-       "Lent pour de gros jeux de données",
-       "Dépend du choix de K",
-       "Mauvais dans les zones avec peu de voisins"]
-data_ccl = pd.DataFrame({
-    "Modèle": ["KNN", "Random Forest"],
-    "Valeurs": [KNN, "5"]
-})
-st.dataframe(data_ccl)
+st.image("Capture d'écran 2025-10-22 185756.png", caption = "Fig.8 : Tableau des différences entre les deux modèles")
 st.write("**Résultats** :")
 st.write("- Précision ≈ 90 % pour les deux modèles.")
 st.write("- Capacité de prédiction : 53 % (KNN) et 57 % (RF).")
@@ -469,7 +458,7 @@ st.write("- Erreur moyenne : environ 1 magnitude sur 3.")
 st.write("**Modèle le plus intéressant** : Random Forest Regressor (RF)")
 st.write("**Analyse** : La combinaison des deux modèles permet de visualiser le nombre de séismes par magnitude ayant entraîné un glissement.")
 # Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)
-st.write("Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)")
+st.write("Fig.9 : Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)")
 # On ne garde qu'une seule figure
 eq_ls1 = earthquake_df[earthquake_df['landslide_triggered'] == 1]
 fig, ax1 = plt.subplots(figsize=(8,5))
