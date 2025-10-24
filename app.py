@@ -456,9 +456,6 @@ st.write("- Capacité de prédiction : 53 % (KNN) et 57 % (RF).")
 st.write("- Erreur moyenne : environ 1 magnitude sur 3.")
 st.write("**Modèle le plus intéressant** : Random Forest Regressor (RF)")
 st.write("**Analyse** : La combinaison des deux modèles permet de visualiser le nombre de séismes par magnitude ayant entraîné un glissement.")
-st.write("**Observation** : Les séismes de faible magnitude semblent avoir un impact légèrement supérieur, probablement en raison de leur plus grande fréquence.")
-
-
 # Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)
 st.write("Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)")
 # On ne garde qu'une seule figure
@@ -476,3 +473,4 @@ sns.histplot(eq_ls1['mag'], bins=20, stat='probability', color='blue', kde=True,
 ax2.set_ylabel("Proportion (%)", color='blue')
 ax2.tick_params(axis='y', labelcolor='blue')
 st.pyplot(fig)
+st.write("**Observation** : Les séismes de faible magnitude semblent avoir un impact légèrement supérieur, probablement en raison de leur plus grande fréquence.")
