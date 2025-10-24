@@ -148,7 +148,7 @@ time_window_days = 4      # 24h=1, 48h=2, 72h=3
 radius_km      = 200       # 25 / 50 / 100 km à tester
 ft = pd.DataFrame({["Fenêtre temporelle utilisée (en j)", "Rayon de calcul autour de l'épicentre (en km)"],
                   [time_window_days, radius_km]})
-st.table(ft)
+st.dataframe(ft)
 
 def haversine_km(lat1, lon1, lat2, lon2): #calcul de la distance entre 2 points sur terre
     R = 6371.0 #rayon moyen de la terre
