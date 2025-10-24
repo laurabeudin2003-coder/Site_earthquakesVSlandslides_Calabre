@@ -126,16 +126,13 @@ st.write("1) Conversion des dates sous le format UTC")
 earthquake_df['time'] = pd.to_datetime(earthquake_df['time'], errors='coerce', utc = True).dt.tz_localize(None)
 landslide_df['utc_date'] = pd.to_datetime(landslide_df['utc_date'], errors='coerce', utc = True).dt.tz_localize(None)
             # Définir le raport entre la profondeur et la magnitude
-st.write("2) Calculer le rapport entre la profondeur et la magnitude pour normaliser la profondeur")
-st.write("Cela permet d'éviter qu'un séisme profond soit traiter de la même manière que ceux superficiels")
+st.write("2) Calculer le rapport entre la profondeur et la magnitude pour normaliser la profondeur. Cela permet d'éviter qu'un séisme profond soit traiter de la même manière que ceux superficiels")
 earthquake_df['depth_mag_ratio'] = earthquake_df['depth'] / earthquake_df['mag']
             # Définir la profondeur en echelle logarithmique
-st.write("3) Mettre la profondeur en échelle logarithmique")
-st.write("Cela permet de lisser les valeurs")
+st.write("3) Mettre la profondeur en échelle logarithmique afin de lisser les valeurs")
 earthquake_df['log_depth'] = np.log1p(earthquake_df['depth'])
             # Transformation des coordonnées pour une meilleure visualisation géographique
-st.write("4) Transformation des coordonnées pour qu'elles soient comprise par le programme")
-st.write("Cela permet au programme de mieux se repérer dans l'espace et améliorer le calcul spatial")
+st.write("4) Transformation des coordonnées pour qu'elles soient comprise par le programme. Cela permet au programme de mieux se repérer dans l'espace et améliorer le calcul spatial")
 earthquake_df['sin_lat'] = np.sin(np.radians(earthquake_df['latitude']))
 earthquake_df['cos_lon'] = np.cos(np.radians(earthquake_df['longitude']))
             #Nettoyage des colonnes en cas de valeurs manquantes
