@@ -50,7 +50,7 @@ nom_col = st.selectbox(
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
         #Visualisation des données
-if nom_col == ["latitude", "longitude", "depth", "mag"]:
+if nom_col == "latitude" or nom_col == "longitude" or nom_col == "depth" or nom_col == "mag":
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.hist(earthquake_df[nom_col],
         bins=20,
