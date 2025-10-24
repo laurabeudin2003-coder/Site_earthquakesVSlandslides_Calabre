@@ -450,6 +450,18 @@ ax.grid(True)
 st.pyplot(fig)
 
 st.markdown("##### Conclusion")
+st.write("Tableau des différences entre les deux modèles")
+KNN = ["Très simple, intuitif, pas besoin d’entrainement lourd",
+       "Très sensible à l’échelle des variables",
+       "Fonctionne bien si les données sont bien distribuées et nombreuses",
+       "Lent pour de gros jeux de données",
+       "Dépend du choix de K",
+       "Mauvais dans les zones avec peu de voisins"]
+data_ccl = pd.DataFrame({
+    "Modèle": ["KNN", "Random Forest"],
+    "Valeurs": [KNN, "5"]
+})
+st.dataframe(data_ccl)
 st.write("**Résultats** :")
 st.write("- Précision ≈ 90 % pour les deux modèles.")
 st.write("- Capacité de prédiction : 53 % (KNN) et 57 % (RF).")
