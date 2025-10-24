@@ -192,6 +192,9 @@ def ls_features_for_eq(t0, lat0, lon0, mag):
         return 0, 0, np.nan, np.nan #On retourne 0
     return 1, cnt, min_dt_h, min_d_km #Sinon on retourne il y a eu un glissement associé, le nombre associé pendant la fenetre, delai le plus court, distance la plus courte
 
+        #Mise en forme des données pour l'entrainement et le test
+st.markdown("#### Mise en forme des données pour l'entrainement et le test")
+st.write("1) Ré-attribution des données pour chaque classe dans une variable landslide_triggered")
 # Applique aux séismes (vectorisation par apply ligne à ligne)
 feats = earthquake_df.apply(
     lambda r: ls_features_for_eq(r['time'], r['latitude'], r['longitude'], r['mag']), #Applique au temps, latitude, longitude et magnitude
@@ -218,6 +221,7 @@ earthquake_df['non_induced'].value_counts(normalize=True)
 earthquake_sorted = earthquake_df.sort_values('time').reset_index(drop=True)
 
 # Découpage 70% train / 20% test
+st.write("2) Découpage du set de données en deux afin de conserver 70% pour l'entrainement et 30% pour le test du modèle")
 cut_idx = int(0.7 * len(earthquake_sorted))  # 70% train / 30% test
 train_df = earthquake_sorted.iloc[:cut_idx]
 test_df  = earthquake_sorted.iloc[cut_idx:]
@@ -227,6 +231,7 @@ feature_cols = [
     'timestamp','latitude','longitude','depth','mag',
     'depth_mag_ratio','log_depth','sin_lat','cos_lon'
 ]
+st.write("3) Définition des variables à utiliser en entrée du modèle : ", ", ".join(feature_cols))
 
 #Définition des variables pour l'entrainement et le test
 X_train = train_df[feature_cols]
