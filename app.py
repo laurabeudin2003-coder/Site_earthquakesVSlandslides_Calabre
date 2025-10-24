@@ -36,6 +36,11 @@ landslide_df = pd.read_csv(file_path_landslide, sep=";")
 
 # Infos sur les fichiers et étapes de pré-traitement
 st.markdown("### Pré-traitement")
+st.write("**Etapes :**")
+st.text("- Première lecture des documents sur Excel pour visualiser le fichier csv et déterminer le type de séparateurs (, ou ;)")
+st.text("- Lecture sur Google Colab et mise sous format de DataFrame")
+st.text("- Elimination des colonnes superficielles ou non cohérentes avec la problématique")
+st.text("- Vérification de la cohérence de la donnée (valeurs manquantes, aberrantes) et visualisation des variables")
     # Pour le fichier sur les séismes
 st.markdown('#### Le dataset sur les séismes')
         #Ajout image séisme
