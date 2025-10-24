@@ -21,7 +21,7 @@ st.write("Mineure numérique - Thomas BENOIT & Laura BEUDIN")
 st.markdown("### Explication de la problématique")
 st.text("Le sud de l’Italie est une zone tectonique relativement active, cela combiné avec une marge passive très abrupte et des reliefs montagneux, les phénomènes de glissements de terrain y sont fréquents. Ainsi la question de causalité entre séisme et déclenchement de glissement de terrain peut se poser.  Entre 1996 et 2021, le gouvernement italien a recensé environ 300 glissements de terrain sur la région de la Calabre et 400 en Sicile (Fig. 1 et 3). Pour les séismes, on en compte près de 100 entre 1960 et 2025 en Calabre (Fig. 2).")
 st.image("Capture d'écran 2025-10-22 185756.png", caption = "Fig.1 : Carte de recensement des glissements de terrain par région (Italie) (Perruccacci et al., 2023)")
-st.text("**Les données utilisés sont :**")
+st.write("**Les données utilisés sont :**")
 st.text("- ComCat (Comprehensive Catalog) de l’ANSS : Séismes de la base de données internationales de l’USGS entre 1960 et 2025")
 st.text("- ITALICA (ITAlian rainfall(induced LandslIdes CAtalogue) de Perruccacci et al., 2023 : Glissements de terrain entre 1996 et 2021")
 # Chemins vers les fichiers .csv
