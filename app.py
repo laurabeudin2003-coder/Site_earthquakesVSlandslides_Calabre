@@ -324,11 +324,8 @@ st.write("3) Définition des valeurs d'entrée et de la cible du Machine Learnin
 X = earthquake_df[['timestamp', 'latitude', 'longitude', 'depth']]
 y = earthquake_df['mag']
 
-data_KNN = pd.DataFrame({
-    "Variables": ["X", "Y"],
-    "Valeurs": [('timestamp', 'latitude', 'longitude', 'depth'), "magnitude"],
-})
-st.dataframe(data_KNN)
+st.write("Données d'entrée pour le modèle :", ", ".join(X))
+st.write("Cible du modèle : Magnitude")
 #Normalisation des données pour maintenir une échelle linéaire
 scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
