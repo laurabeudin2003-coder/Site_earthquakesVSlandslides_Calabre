@@ -252,11 +252,16 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 #Définition du RandomForest
+st.markdown("#### Machine Learning supervisé : Random Forest Classifier")
 clf = RandomForestClassifier(
     n_estimators=300, random_state=42, class_weight='balanced'
 )
 clf.fit(X_train, y_train)
-
+data_RF = pd.DataFrame({
+    "Variables": ["Nombre d'arbres", "Reproductibilité", "Equilibrage des classes"],
+    "Valeurs": [n_estimators, ramdom_state, class_weight]
+})
+st.dataframe(data_RF)
 #Prédictions
 ix1 = np.where(clf.classes_ == 1)[0][0] #On récupère l'index de la classe 1 (glissement déclanchés par seisme)
 y_proba = clf.predict_proba(X_test)[:,1] #Prediction de la probabilité que la classe 1 ai lieu
