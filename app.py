@@ -305,23 +305,7 @@ ax.set_ylabel("Latitude")
 ax.set_title("Répartition géographique des séismes (rouge = glissement déclenché)")
 st.pyplot(fig)
 
-# Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)
-st.write("Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)")
-# On ne garde qu'une seule figure
-eq_ls1 = earthquake_df[earthquake_df['landslide_triggered'] == 1]
-fig, ax1 = plt.subplots(figsize=(8,5))
-# Axe principal : nombre de cas
-sns.histplot(eq_ls1['mag'], bins=20, color='green', kde=False, ax=ax1)
-ax1.set_xlabel("Magnitude du séisme")
-ax1.set_ylabel("Nombre de glissements détectés (classe 1)", color='green')
-ax1.tick_params(axis='y', labelcolor='green')
-ax1.set_title("Distribution des seismes par magnitude \n ayant engendrés un glissement avec courbe de proportionnalité")
-# Axe secondaire : proportion
-ax2 = ax1.twinx()
-sns.histplot(eq_ls1['mag'], bins=20, stat='probability', color='blue', kde=True, alpha=0.3, ax=ax2)
-ax2.set_ylabel("Proportion (%)", color='blue')
-ax2.tick_params(axis='y', labelcolor='blue')
-st.pyplot(fig)
+
 
 #Machine learning magnitude modèle KNN
 #conversion des dates sous le même format (UTC)
@@ -430,4 +414,22 @@ ax.set_title("Comparaison des magnitudes réelles vs prédites")
 ax.grid(True)
 
 # Affichage dans Streamlit
+st.pyplot(fig)
+
+# Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)
+st.write("Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)")
+# On ne garde qu'une seule figure
+eq_ls1 = earthquake_df[earthquake_df['landslide_triggered'] == 1]
+fig, ax1 = plt.subplots(figsize=(8,5))
+# Axe principal : nombre de cas
+sns.histplot(eq_ls1['mag'], bins=20, color='green', kde=False, ax=ax1)
+ax1.set_xlabel("Magnitude du séisme")
+ax1.set_ylabel("Nombre de glissements détectés (classe 1)", color='green')
+ax1.tick_params(axis='y', labelcolor='green')
+ax1.set_title("Distribution des seismes par magnitude \n ayant engendrés un glissement avec courbe de proportionnalité")
+# Axe secondaire : proportion
+ax2 = ax1.twinx()
+sns.histplot(eq_ls1['mag'], bins=20, stat='probability', color='blue', kde=True, alpha=0.3, ax=ax2)
+ax2.set_ylabel("Proportion (%)", color='blue')
+ax2.tick_params(axis='y', labelcolor='blue')
 st.pyplot(fig)
