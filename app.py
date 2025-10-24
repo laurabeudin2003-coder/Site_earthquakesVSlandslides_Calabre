@@ -270,15 +270,11 @@ y_pred  = (y_proba > 0.5).astype(int) #On transforme la prédiction en binaire (
 
 st.write("Tableau des résultats de l'évaluation de la cohérence du modèle")
 result = pd.DataFrame({
-    "Variables": ["Accuracy", "ROC AUC", "PR AUC"],
-    "Valeurs": [accuracy_score(y_test, y_pred), roc_auc_score(y_test, y_proba), average_precision_score(y_test, y_proba)]
+    "Variables": ["Accuracy", "ROC AUC"],
+    "Valeurs": [accuracy_score(y_test, y_pred), roc_auc_score(y_test, y_proba)],
+    "Description": ["Affichage des proportions totales de bonnes prédictions", "Evaluation si c'est un bon ou un mauvais modèle"]
 })
 st.dataframe(result)
-
-st.write("Résultats de l'évaluation de la cohérence du modèle :")
-st.write("Accuracy :", accuracy_score(y_test, y_pred)) #Affichage des proportions totales de bonne prédictions
-st.write("ROC AUC  :", roc_auc_score(y_test, y_proba)) #Mesure comment le modèle classe (bien ou pas bien)
-st.write("PR AUC   :", average_precision_score(y_test, y_proba)) #Affichage de l'aire sous la courbe
 st.write("\nClassification report:\n", classification_report(y_test, y_pred)) #Rapport des performances du modèle
 st.write("\nConfusion matrix:\n", confusion_matrix(y_test, y_pred)) #Matrice de confusion
 
