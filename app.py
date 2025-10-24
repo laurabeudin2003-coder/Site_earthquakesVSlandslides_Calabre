@@ -446,9 +446,16 @@ ax.set_xlabel("Magnitude réelle")
 ax.set_ylabel("Magnitude prédite")
 ax.set_title("Comparaison des magnitudes réelles vs prédites")
 ax.grid(True)
-
-# Affichage dans Streamlit
 st.pyplot(fig)
+
+st.write("**Résultats** :")
+st.write("- Précision ≈ 90 % pour les deux modèles.")
+st.write("- Capacité de prédiction : 53 % (KNN) et 57 % (RF).")
+st.write("- Erreur moyenne : environ 1 magnitude sur 3.")
+st.write("**Modèle le plus intéressant** : Random Forest Regressor (RF)")
+st.write("**Analyse** : La combinaison des deux modèles permet de visualiser le nombre de séismes par magnitude ayant entraîné un glissement.")
+st.write("**Observation** : Les séismes de faible magnitude semblent avoir un impact légèrement supérieur, probablement en raison de leur plus grande fréquence.")
+
 
 # Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)
 st.write("Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)")
