@@ -259,7 +259,7 @@ clf = RandomForestClassifier(
 clf.fit(X_train, y_train)
 data_RF = pd.DataFrame({
     "Variables": ["Nombre d'arbres", "Reproductibilité", "Equilibrage des classes"],
-    "Valeurs": [n_estimators, ramdom_state, class_weight]
+    "Valeurs": [n_estimators, random_state, class_weight]
 })
 st.dataframe(data_RF)
 #Prédictions
