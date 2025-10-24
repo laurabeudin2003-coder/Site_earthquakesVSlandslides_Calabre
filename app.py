@@ -14,7 +14,7 @@ from sklearn.preprocessing import StandardScaler #Normalisation des données pou
 from sklearn.neighbors import KNeighborsRegressor #Modèle de machine learning supervisé voisin proche
 
 st.header("Les géohazards en Calabre (Sud de l'Italie)")
-st.subhearder("Existe-t-il une relation entre les séismes et les glissements de terrain")
+st.subheader("Existe-t-il une relation entre les séismes et les glissements de terrain")
 st.write("Mineure numérique - Thomas BENOIT & Laura BEUDIN")
 
 #Explication pb / Intro
