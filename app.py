@@ -1,7 +1,7 @@
 import streamlit as st
+#Importation de toutes les librairies et modules nécessaire pour le modèle
 import pandas as pd
 import matplotlib.pyplot as plt
-#Importation de toutes les librairies et modules nécessaire pour le modèle
 import numpy as np
 from sklearn.model_selection import train_test_split #Séparer les données d'entrainement et de test
 from sklearn.ensemble import RandomForestClassifier #Modèle RandomForest version Classifier (conditions binaires: 1 / 0)
@@ -18,38 +18,39 @@ st.write("Existe-t-il une relation entre les séismes et les glissements de terr
 st.write("Mineure numérique - Thomas BENOIT & Laura BEUDIN")
 
 #Explication pb / Intro
-st.text("Le sud de l’Italie est une zone tectonique relativement active, cela combiné avec une marge passive très abrupte et des reliefs montagneux les phénomènes de glissements de terrain y sont fréquents. Ainsi la question de causalité entre séisme et déclenchement de glissement de terrain peut se poser.  Entre 1996 et 2021, le gouvernement italien a recensé environ 300 glissements de terrain sur la région de la Calabre et 400 en Sicile (Fig. 1 et 3). Pour les séismes, on en compte près de 100 entre 1960 et 2025 en Calabre (Fig. 2).")
+st.text("Le sud de l’Italie est une zone tectonique relativement active, cela combiné avec une marge passive très abrupte et des reliefs montagneux, les phénomènes de glissements de terrain y sont fréquents. Ainsi la question de causalité entre séisme et déclenchement de glissement de terrain peut se poser.  Entre 1996 et 2021, le gouvernement italien a recensé environ 300 glissements de terrain sur la région de la Calabre et 400 en Sicile (Fig. 1 et 3). Pour les séismes, on en compte près de 100 entre 1960 et 2025 en Calabre (Fig. 2).")
 st.image("Capture d'écran 2025-10-22 185756.png", caption = "Fig.1 : Carte de recensement des glissements de terrain par région (Italie) (Perruccacci et al., 2023)")
-# 2️⃣ Path to the CSV
-# Earthquakes file : loc (lat: 35S 42N, lon: 12W 21E), date: 1960 -> today (17/10/2025), mag > 2.5, source : USGS
+
+# Chemins vers les fichiers .csv
+    # Earthquakes file : loc (lat: 35S 42N, lon: 12W 21E), date: 1960 -> today (17/10/2025), mag > 2.5, source : USGS
 file_path_earthquake = 'Earthquake_South_Italy_since1960.csv'
-# Landslides file : ITALICA, source : Istat
+    # Landslides file : ITALICA, source : Perruccacci et al., 2023
 file_path_landslide = 'ITALICA_v4.csv'
 
-#Lecture des fichiers
+# Lecture des fichiers
 earthquake_df = pd.read_csv(file_path_earthquake, sep=";")
 landslide_df = pd.read_csv(file_path_landslide, sep=";")
 
-#Pour le fichier sur les séismes
+# Infos sur les fichiers et étapes de pré-traitement
+    # Pour le fichier sur les séismes
 st.header('Le dataset sur les séismes')
-#Ajout image séisme
+        #Ajout image séisme
 st.image("Earthquakes_Calabria2.png", caption = "Fig.2 : Cartographie de la répartition des séismes au Sud de l'Italie")
-# Un bouton pour afficher le CSV brute
+        # Un bouton pour afficher le CSV brute
 if st.button('Données brutes (.csv) sur les séismes'):
     st.write('Fichier .csv des séismes issues de la base de données de l USGS mais restraint à l Italie du Sud')
     st.write(earthquake_df)
-#Sélection des colonnes interressantes pour l'étude
+        #Sélection des colonnes interressantes pour l'étude
 earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
 st.write('Les informations interressantes pour l étude sont :', ', '.join(earthquake_df.columns))
-#Affichage des infos sur les csv
-## Une liste de sélection pour choisir 1 colonne du fichier sur les séismes
+        # Une liste de sélection pour choisir 1 colonne du fichier sur les séismes et voir ses infos
 nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
     earthquake_df.columns)
 st.write(nom_col)
 st.write(earthquake_df[nom_col].describe())
-#Visualisation des données
-if nom_col != "time":
+        #Visualisation des données
+if nom_col == ["latitude", "longitude", "depth", "mag"]:
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.hist(earthquake_df[nom_col],
         bins=20,
@@ -62,7 +63,7 @@ if nom_col != "time":
     st.pyplot(fig)
 else:
     st.write('Choisir une autre variable pour afficher la répartition des séismes')
-#Les Valeurs manquantes dans le fichier
+        #Les Valeurs manquantes dans le fichier
 st.write('Les valeurs manquantes sur le fichier des séismes')
 missing_values = pd.DataFrame({
     "Variables": earthquake_df.columns,
@@ -71,25 +72,24 @@ missing_values = pd.DataFrame({
 })
 st.dataframe(missing_values)
 
-
-#Pour le fichier sur les glissements de terrain
+    # Pour le fichier sur les glissements de terrain
 st.header('Le dataset sur les glissements de terrain en Italie')
-#Ajout image glissements de terrain
+        # Ajout image glissements de terrain
 st.image("Landslides_Calabria2.png", caption = "Fig.3 : Cartographie des glissements de terrain dans le Sud de l'Italie")
-# Un bouton pour afficher le CSV brute
+        # Un bouton pour afficher le CSV brute
 if st.button('Données brutes (.csv) sur les glissements de terrain'):
     st.write('Fichier .csv des glissements de terrain en Italie issues de la base de données de l Istat')
     st.write(landslide_df)
-## Une liste de sélection pour choisir 1 colonne du fichier sur les glissements de terrain
+        # Une liste de sélection pour choisir 1 colonne du fichier sur les glissements de terrain et voir ses infos
 nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
     landslide_df.columns)
 st.write(nom_col)
 st.write(landslide_df[nom_col].describe())
-#Sélection des colonnes interressantes pour l'étude
+        # Sélection des colonnes interressantes pour l'étude
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
 st.write('Les informations interressantes pour cette étude sont :', ', '.join(landslide_df.columns))
-#Visualisation des données
+        # Visualisation des données
 if nom_col == "lon" or nom_col == "lat" or nom_col == "elevation" or nom_col == "slope" or nom_col == "lon_raingauge" or nom_col == "lat_raingauge" or nom_col == "duration" or nom_col == "cumulated_rainfall":
     fig, ax = plt.subplots(figsize=(8, 5))
     ax.hist(landslide_df[nom_col],
@@ -103,7 +103,7 @@ if nom_col == "lon" or nom_col == "lat" or nom_col == "elevation" or nom_col == 
     st.pyplot(fig)
 else:
     st.write('Choisir une autre variable pour afficher la répartition des glissements de terrain')
-#Les Valeurs manquantes dans les fichiers
+        # Les Valeurs manquantes dans les fichiers
 st.write('Les valeurs manquantes sur le fichier des glissements de terrain')
 missing_values_LS = pd.DataFrame({
     "Variables": landslide_df.columns,
