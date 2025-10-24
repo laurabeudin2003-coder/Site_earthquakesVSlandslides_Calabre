@@ -151,7 +151,9 @@ ft = pd.DataFrame({
     "Valeurs": [time_window_days, radius_km]
 })
 st.dataframe(ft)
-
+         #Définition des fonctions
+st.markdown("#### Définition des fonctions")
+st.write("1) Calcul de la distance entre deux points sur une sphère en utilisant la formule d'Haversine. L'objectif est de placer les glissements en prenant en compte la courbure de la Terre")
 def haversine_km(lat1, lon1, lat2, lon2): #calcul de la distance entre 2 points sur terre
     R = 6371.0 #rayon moyen de la terre
     dlat = radians(lat2 - lat1); dlon = radians(lon2 - lon1) #différence de latitude et longitude
@@ -163,9 +165,9 @@ landslide_times  = landslide_sorted['utc_date'].to_numpy()   # numpy datetime64
 landslide_lat    = landslide_sorted['lat' ].to_numpy() #Latitude du glissement
 landslide_lon    = landslide_sorted['lon' ].to_numpy() #Longitude du glissement
 
+st.write("2) Fonction qui retourne les classes qui vont être utilisées pour l'entrainement et le test du modèle de Machine Learning (0 = pas de glissement associé à un séisme, 1 = au moins un glissement associé à un séisme)")
 def ls_features_for_eq(t0, lat0, lon0, mag):
     mag = float(mag); lat0 = float(lat0); lon0 = float(lon0) #Conversion en float pour eviter les erreurs
-
     #Elimination des seismes de faible magnitude
     if mag <3.5:
       return 0, 0, float('inf'), float('inf')
