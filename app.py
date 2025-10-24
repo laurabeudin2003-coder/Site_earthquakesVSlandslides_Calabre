@@ -44,7 +44,7 @@ if st.button('Données brutes (.csv) sur les séismes'):
     st.write(earthquake_df)
         #Sélection des colonnes interressantes pour l'étude
 earthquake_df = earthquake_df.drop(columns=['magType', 'nst', 'net', 'updated', 'type', 'horizontalError', 'depthError', 'magError', 'magNst', 'status', 'locationSource', 'magSource'])
-st.write('**Les informations interressantes pour l étude sont :**', ', '.join(earthquake_df.columns))
+st.write("**Les informations intéressantes pour l'étude sont :**", ', '.join(earthquake_df.columns))
         # Une liste de sélection pour choisir 1 colonne du fichier sur les séismes et voir ses infos
 nom_col = st.selectbox(
     'Les infos de quelles variables voulez-vous?',
@@ -66,7 +66,7 @@ if nom_col == "latitude" or nom_col == "longitude" or nom_col == "depth" or nom_
 else:
     st.write('Choisir une autre variable pour afficher la répartition des séismes')
         #Les Valeurs manquantes dans le fichier
-st.write('Les valeurs manquantes sur le fichier des séismes')
+st.write('**Les valeurs manquantes sur le fichier des séismes**')
 missing_values = pd.DataFrame({
     "Variables": earthquake_df.columns,
     "Valeurs manquantes": earthquake_df.isna().sum(),
@@ -75,7 +75,7 @@ missing_values = pd.DataFrame({
 st.dataframe(missing_values)
 
     # Pour le fichier sur les glissements de terrain
-st.header('Le dataset sur les glissements de terrain en Italie')
+st.markdown('#### Le dataset sur les glissements de terrain en Italie')
         # Ajout image glissements de terrain
 st.image("Landslides_Calabria2.png", caption = "Fig.3 : Cartographie des glissements de terrain dans le Sud de l'Italie")
         # Un bouton pour afficher le CSV brute
@@ -90,7 +90,7 @@ st.write(nom_col)
 st.write(landslide_df[nom_col].describe())
         # Sélection des colonnes interressantes pour l'étude
 landslide_df = landslide_df.drop(columns= ['id', 'information_source', 'landslide_type', 'municipality', 'province', 'region', 'geographic_accuracy', 'land_cover', 'day', 'month', 'year', 'local_time', 'temporal_accuracy'])
-st.write('Les informations interressantes pour cette étude sont :', ', '.join(landslide_df.columns))
+st.write('**Les informations intéressantes pour cette étude sont :**', ', '.join(landslide_df.columns))
         # Visualisation des données
 if nom_col == "lon" or nom_col == "lat" or nom_col == "elevation" or nom_col == "slope" or nom_col == "lon_raingauge" or nom_col == "lat_raingauge" or nom_col == "duration" or nom_col == "cumulated_rainfall":
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -106,7 +106,7 @@ if nom_col == "lon" or nom_col == "lat" or nom_col == "elevation" or nom_col == 
 else:
     st.write('Choisir une autre variable pour afficher la répartition des glissements de terrain')
         # Les Valeurs manquantes dans les fichiers
-st.write('Les valeurs manquantes sur le fichier des glissements de terrain')
+st.write('**Les valeurs manquantes sur le fichier des glissements de terrain**')
 missing_values_LS = pd.DataFrame({
     "Variables": landslide_df.columns,
     "Valeurs manquantes": landslide_df.isna().sum(),
