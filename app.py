@@ -278,23 +278,22 @@ st.dataframe(result)
 st.write("\nClassification report:\n", classification_report(y_test, y_pred)) #Rapport des performances du modèle
 st.write("\nConfusion matrix:\n", confusion_matrix(y_test, y_pred)) #Matrice de confusion
 
-# Calcul de la courbe précision–rappel
-prec, rec, thr = precision_recall_curve(y_test, y_proba)
+    # Visuels
+st.markdown("#### Visualisation des résultats")
 
+# Courbe précision–rappel
+prec, rec, thr = precision_recall_curve(y_test, y_proba)
 st.write("Courbe de précision-rappel de notre modèle RandomForest pour le lien entre séismes et glissements de terrain")
-# Création de la figure
 fig, ax = plt.subplots(figsize=(5,4))
 ax.plot(rec, prec, color='orange')
 ax.set_xlabel('Recall')
 ax.set_ylabel('Precision')
 ax.set_title('Courbe précision–rappel')
 ax.grid(True)
-
-# Affichage dans Streamlit
 st.pyplot(fig)
 
-st.write("Nuage de point des locations de séismes avec ceux qui ont générés des glissements de terrain")
-# Nuage de points des séismes
+# Nuage de points avec localisation des séismes
+st.write("Nuage de points des localisations de séismes avec ceux qui ont générés des glissements de terrain")
 fig, ax = plt.subplots(figsize=(8,6))
 scatter = ax.scatter(
     earthquake_df['longitude'], earthquake_df['latitude'],  # Position du séisme
@@ -304,16 +303,13 @@ scatter = ax.scatter(
 ax.set_xlabel("Longitude")
 ax.set_ylabel("Latitude")
 ax.set_title("Répartition géographique des séismes (rouge = glissement déclenché)")
-
-# Affichage dans Streamlit
 st.pyplot(fig)
 
+# Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)
 st.write("Graphique montrant le nombre de séismes ayant engendré des glissements de terrain par magnitude (ainsi que la proportion)")
 # On ne garde qu'une seule figure
 eq_ls1 = earthquake_df[earthquake_df['landslide_triggered'] == 1]
-
 fig, ax1 = plt.subplots(figsize=(8,5))
-
 # Axe principal : nombre de cas
 sns.histplot(eq_ls1['mag'], bins=20, color='green', kde=False, ax=ax1)
 ax1.set_xlabel("Magnitude du séisme")
@@ -325,9 +321,6 @@ ax2 = ax1.twinx()
 sns.histplot(eq_ls1['mag'], bins=20, stat='probability', color='blue', kde=True, alpha=0.3, ax=ax2)
 ax2.set_ylabel("Proportion (%)", color='blue')
 ax2.tick_params(axis='y', labelcolor='blue')
-
-
-# Affichage dans Streamlit
 st.pyplot(fig)
 
 #Machine learning magnitude modèle KNN
