@@ -33,8 +33,9 @@ earthquake_df = pd.read_csv(file_path_earthquake, sep=";")
 landslide_df = pd.read_csv(file_path_landslide, sep=";")
 
 # Infos sur les fichiers et étapes de pré-traitement
+st.markdown("### Pré-traitement")
     # Pour le fichier sur les séismes
-st.header('Le dataset sur les séismes')
+st.markdown('#### Le dataset sur les séismes')
         #Ajout image séisme
 st.image("Earthquakes_Calabria2.png", caption = "Fig.2 : Cartographie de la répartition des séismes au Sud de l'Italie")
         # Un bouton pour afficher le CSV brute
